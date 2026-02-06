@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="NuzlockePlanner.Shared/NuzlockePlanner.Shared.csproj" />
+  <Project Path="NuzlockePlanner.Web/NuzlockePlanner.Web.csproj" />
+</Solution>
