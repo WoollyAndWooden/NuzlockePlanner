@@ -33,7 +33,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Publish
-        run: dotnet publish NuzlockePlanner.Web/NuzlockePlanner.Web.csproj -c Release -o release --nologo
+        run: dotnet publish NuzlockePlanner.Web/NuzlockePlanner.Web.csproj -c Release -o release /p:GHPages=true --nologo
 
       - name: Copy index.html to 404.html
         run: cp release/wwwroot/index.html release/wwwroot/404.html
