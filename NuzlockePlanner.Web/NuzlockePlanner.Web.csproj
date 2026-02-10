@@ -18,17 +18,23 @@
 
   <!-- Custom Target to configure the app for GitHub Pages deployment -->
   <Target Name="ConfigureForGitHubPages" AfterTargets="Publish" Condition="'$(GHPages)' == 'true'">
-    <Message Text="Configuring for GitHub Pages (Base Tag + .nojekyll + Script Fix)..." Importance="high" />
+    <Message Text="Configuring for GitHub Pages..." Importance="high" />
     
-    <!-- Update the base tag in index.html -->
+    <!-- Update base tag -->
     <Exec Command="sed -i 's|&lt;base href=&quot;/&quot; /&gt;|&lt;base href=&quot;/NuzlockePlanner/&quot; /&gt;|g' &quot;$(PublishDir)wwwroot/index.html&quot;" />
     
-    <!-- Create .nojekyll file -->
+    <!-- Create .nojekyll -->
     <Exec Command="touch &quot;$(PublishDir)wwwroot/.nojekyll&quot;" />
     
-    <!-- Fix: Copy the hashed blazor.webassembly.js to the unhashed name expected by index.html -->
-    <!-- This handles cases where the SDK fingerprints the file but doesn't update the script tag -->
-    <Exec Command="cp &quot;$(PublishDir)wwwroot/_framework/blazor.webassembly.*.js&quot; &quot;$(PublishDir)wwwroot/_framework/blazor.webassembly.js&quot;" IgnoreExitCode="true" />
+    <!-- Find the hashed blazor.webassembly.js file -->
+    <ItemGroup>
+      <HashedFile Include="$(PublishDir)wwwroot/_framework/blazor.webassembly.*.js" />
+    </ItemGroup>
+    
+    <!-- Copy it to blazor.webassembly.js -->
+    <Copy SourceFiles="@(HashedFile)" DestinationFiles="$(PublishDir)wwwroot/_framework/blazor.webassembly.js" Condition="'@(HashedFile)' != ''" />
+    
+    <Message Text="Copied @(HashedFile) to blazor.webassembly.js" Importance="high" />
   </Target>
 
 </Project>
