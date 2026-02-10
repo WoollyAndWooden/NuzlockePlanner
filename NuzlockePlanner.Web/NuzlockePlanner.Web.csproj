@@ -16,6 +16,11 @@
     <ProjectReference Include="..\NuzlockePlanner.Shared\NuzlockePlanner.Shared.csproj" />
   </ItemGroup>
 
+  <!-- Ensure .nojekyll is copied to the publish output -->
+  <ItemGroup>
+    <Content Include="wwwroot\.nojekyll" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+
   <!-- Custom Target to update base tag for GitHub Pages deployment -->
   <Target Name="ChangeBaseTag" AfterTargets="Publish" Condition="'$(GHPages)' == 'true'">
     <Message Text="Updating base tag for GitHub Pages..." Importance="high" />
