@@ -16,15 +16,15 @@
     <ProjectReference Include="..\NuzlockePlanner.Shared\NuzlockePlanner.Shared.csproj" />
   </ItemGroup>
 
-  <!-- Ensure .nojekyll is copied to the publish output -->
-  <ItemGroup>
-    <Content Include="wwwroot\.nojekyll" CopyToOutputDirectory="Always" />
-  </ItemGroup>
-
-  <!-- Custom Target to update base tag for GitHub Pages deployment -->
-  <Target Name="ChangeBaseTag" AfterTargets="Publish" Condition="'$(GHPages)' == 'true'">
-    <Message Text="Updating base tag for GitHub Pages..." Importance="high" />
+  <!-- Custom Target to configure the app for GitHub Pages deployment -->
+  <Target Name="ConfigureForGitHubPages" AfterTargets="Publish" Condition="'$(GHPages)' == 'true'">
+    <Message Text="Configuring for GitHub Pages (Base Tag + .nojekyll)..." Importance="high" />
+    
+    <!-- Update the base tag in index.html -->
     <Exec Command="sed -i 's|&lt;base href=&quot;/&quot; /&gt;|&lt;base href=&quot;/NuzlockePlanner/&quot; /&gt;|g' &quot;$(PublishDir)wwwroot/index.html&quot;" />
+    
+    <!-- Create .nojekyll file to prevent 404s on _framework resources -->
+    <Exec Command="touch &quot;$(PublishDir)wwwroot/.nojekyll&quot;" />
   </Target>
 
 </Project>
