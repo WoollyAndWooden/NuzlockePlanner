@@ -16,4 +16,10 @@
     <ProjectReference Include="..\NuzlockePlanner.Shared\NuzlockePlanner.Shared.csproj" />
   </ItemGroup>
 
+  <!-- Custom Target to update base tag for GitHub Pages deployment -->
+  <Target Name="ChangeBaseTag" AfterTargets="Publish" Condition="'$(GHPages)' == 'true'">
+    <Message Text="Updating base tag for GitHub Pages..." Importance="high" />
+    <Exec Command="sed -i 's|&lt;base href=&quot;/&quot; /&gt;|&lt;base href=&quot;/NuzlockePlanner/&quot; /&gt;|g' &quot;$(PublishDir)wwwroot/index.html&quot;" />
+  </Target>
+
 </Project>
