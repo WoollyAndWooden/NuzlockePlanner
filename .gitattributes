@@ -1,0 +1,9 @@
+* binary
+*.js binary
+*.css binary
+*.json binary
+*.html binary
+*.razor binary
+*.cs text diff=csharp
+*.csproj text merge=union
+*.sln text merge=union
