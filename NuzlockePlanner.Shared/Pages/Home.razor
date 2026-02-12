@@ -1,0 +1,103 @@
+@page "/"
+@using NuzlockePlanner.Shared.Models
+
+<PageTitle>Nuzlocke Planner</PageTitle>
+
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="genSelect" class="form-label">Generation:</label>
+            <select id="genSelect" class="form-select" @onchange="OnGenerationChanged">
+                @foreach (var gen in DataService.Generations)
+                {
+                    <option value="@gen.Id" selected="@(gen.Id == selectedGeneration?.Id)">@gen.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    @if (selectedGeneration != null)
+    {
+        <div class="row mb-3">
+            <div class="col-12">
+                <label class="form-label d-block">Game:</label>
+                <div class="btn-group" role="group">
+                    @foreach (var game in selectedGeneration.Games)
+                    {
+                        <input type="radio" class="btn-check" name="gameRadio" id="game-@game.Id" autocomplete="off" 
+                               checked="@(game.Id == selectedGame?.Id)"
+                               @onchange="() => OnGameChanged(game.Id)">
+                        <label class="btn btn-outline-primary" for="game-@game.Id">@game.Name</label>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (selectedGame != null)
+    {
+        <div class="d-flex justify-content-center">
+            <div class="map-container" style="position: relative; display: inline-block;">
+                <img src="@GetMapPath()" alt="@selectedGame.Region.Name Map" style="max-width: 100%; height: auto; display: block;" />
+
+                @foreach (var location in selectedGame.Region.Locations)
+                {
+                    // Determine if it's a route (Id >= 26) or city/landmark (Id < 26)
+                    // Note: The ID logic here is a bit fragile since we regenerate IDs per game, 
+                    // but the base ID (1-57) is preserved in the modulo or offset logic if we were consistent.
+                    // In DataService, we did: Id = locId + (game.Id * 1000). locId is 1-57.
+                    // So we can check (location.Id % 1000) >= 26.
+                    var baseId = location.Id % 1000;
+                    var typeClass = baseId >= 26 ? "type-route" : "type-city";
+                    
+                    <div class="map-spot @typeClass loc-@baseId" 
+                         title="@location.Name"
+                         @onclick="() => SelectLocation(location)">
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="info-panel mt-4 p-3 border rounded">
+            @if (selectedLocation != null)
+            {
+                <h3>@selectedLocation.Name</h3>
+                <p>Encounters:</p>
+                <ul class="list-group">
+                    @foreach (var encounter in selectedLocation.Encounters)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="fw-bold me-2">@encounter.Pokemon.Name</span>
+                                <span class="type-badge type-@encounter.Pokemon.Type1.ToString().ToLower()">@encounter.Pokemon.Type1</span>
+                                @if (encounter.Pokemon.Type2.HasValue)
+                                {
+                                    <span class="type-badge type-@encounter.Pokemon.Type2.Value.ToString().ToLower()">@encounter.Pokemon.Type2</span>
+                                }
+                            </div>
+                            
+                            <div class="text-end">
+                                <span class="badge bg-primary me-1">@encounter.Method</span>
+                                <span class="badge bg-light text-dark border me-1">
+                                    Lvl @encounter.MinLevel@(encounter.MinLevel != encounter.MaxLevel ? $"-{encounter.MaxLevel}" : "")
+                                </span>
+                                @if (encounter.ChancePercentage.HasValue)
+                                {
+                                    <span class="badge bg-secondary">@encounter.ChancePercentage%</span>
+                                }
+                            </div>
+                        </li>
+                    }
+                    @if (!selectedLocation.Encounters.Any())
+                    {
+                        <li class="list-group-item">No encounters data available.</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>Select a location on the map to see details.</p>
+            }
+        </div>
+    }
+</div>
