@@ -48,7 +48,7 @@
                     // In DataService, we did: Id = locId + (game.Id * 1000). locId is 1-57.
                     // So we can check (location.Id % 1000) >= 26.
                     var baseId = location.Id % 1000;
-                    var typeClass = baseId >= 26 ? "type-route" : "type-city";
+                    var typeClass = baseId >= 26 ? "type-city" : "type-route";
                     
                     <div class="map-spot @typeClass loc-@baseId" 
                          title="@location.Name"
