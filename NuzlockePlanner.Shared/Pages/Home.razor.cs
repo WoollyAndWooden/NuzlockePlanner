@@ -44,8 +44,17 @@ public partial class Home
     private string GetMapPath()
     {
         if (selectedGeneration == null || selectedGame == null) return string.Empty;
+        
         // Path format: _content/NuzlockePlanner.Shared/{GenDir}/{RegionName}.JPG
-        // Note: Region name might need sanitization if it has spaces, but "Kanto" is fine.
-        return $"_content/NuzlockePlanner.Shared/{selectedGeneration.GenDir}/{selectedGame.Region.Name}.JPG";
+        // If SeperateDir is true: _content/NuzlockePlanner.Shared/{GenDir}/{GameName}/{RegionName}.JPG
+        
+        var basePath = $"_content/NuzlockePlanner.Shared/{selectedGeneration.GenDir}";
+        
+        if (selectedGame.SeperateDir)
+        {
+            basePath += $"/{selectedGame.Name}";
+        }
+        
+        return $"{basePath}/{selectedGame.Region.Name}.JPG";
     }
 }

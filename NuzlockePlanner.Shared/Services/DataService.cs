@@ -202,7 +202,7 @@ public class DataService
         {
             new Game { Id = 1, Name = "Red", Generation = genI, GenerationId = genI.Id, Region = kanto, RegionId = kanto.Id },
             new Game { Id = 2, Name = "Blue", Generation = genI, GenerationId = genI.Id, Region = kanto, RegionId = kanto.Id },
-            new Game { Id = 3, Name = "Yellow", Generation = genI, GenerationId = genI.Id, Region = kanto, RegionId = kanto.Id }
+            new Game { Id = 3, Name = "Yellow", SeperateDir = true, Generation = genI, GenerationId = genI.Id, Region = kanto, RegionId = kanto.Id }
         };
 
         foreach (var game in games)
@@ -211,23 +211,6 @@ public class DataService
         }
         
         Generations.Add(genI);
-
-        // Populate Locations and Encounters per Game
-        // Note: In a real DB, Locations might be shared or duplicated per game. 
-        // Here, we are adding encounters to the *same* location objects, which is tricky if games differ.
-        // Ideally, we should clone locations for each game or have a Game-Location-Encounter link.
-        // BUT, for this hardcoded example, I will clear encounters and re-populate them based on the selected game in the UI?
-        // No, the UI selects a game, and we show that game's encounters.
-        // So we need separate Location instances for each Game, OR the Encounter needs to know which Game it belongs to.
-        // The current model: Encounter -> Location. Location -> Region. Game -> Region.
-        // This implies all games in a region share the same locations and encounters.
-        // To support version differences (Red vs Yellow), we need to filter encounters by Game.
-        // Since I cannot change the model structure significantly without permission, I will assume
-        // we are creating *separate* Region/Location instances for each Game, OR I will add GameId to Encounter?
-        // The prompt says "Each Game has a Map (Region), and each Map set of Locations".
-        // So, Red has its own Kanto, Blue has its own Kanto.
-        
-        // Let's re-create the Region/Locations for EACH game to allow differences.
         
         foreach (var game in games)
         {
