@@ -33,10 +33,10 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Run Core Tests
-        run: cd src/Core && dotnet test
+        run: cd src/Core.Test && dotnet test
 
       - name: Run Web Tests
-        run: cd src/Web && dotnet test
+        run: cd src/Web.Test && dotnet test
 
       - name: Publish
         run: dotnet publish NuzlockePlanner.Web/NuzlockePlanner.Web.csproj -c Release -o release
