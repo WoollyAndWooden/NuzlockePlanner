@@ -1,5 +1,13 @@
-namespace Core.Components;
+using Microsoft.AspNetCore.Components;
 
-public class Pokedex : ComponentBase
+namespace Core.Components
 {
+
+    public partial class Pokedex : ComponentBase
+    {
+        protected override void OnInitialized()
+        {
+            StateHasChanged();
+        }
+    }
 }

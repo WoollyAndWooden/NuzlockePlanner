@@ -7,12 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Models\" />
+        <Folder Include="Models\" />
+        <Folder Include="Components\" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="10.0.11" />
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="10.0.11" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.3.13" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="2.3.13" />
       <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.11" />
     </ItemGroup>
 

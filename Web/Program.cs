@@ -9,11 +9,4 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-// Add routing configuration
-builder.Services.AddRouting();
-builder.Services.AddSingleton<IRouter, Router>();
-
-// Set default page
-builder.Services.AddSingleton<PageRouteHandler>("", new PageRouteHandler("Home"));
-
 await builder.Build().RunAsync();
