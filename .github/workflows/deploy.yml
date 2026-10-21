@@ -38,8 +38,10 @@ jobs:
       - name: Run Web Tests
         run: cd Web.Test && dotnet test
 
+      - name: Build
+        run: dotnet build Web/NuzlockePlanner.Web.csproj -c Release
       - name: Publish
-        run: dotnet publish NuzlockePlanner.Web/NuzlockePlanner.Web.csproj -c Release -o release
+        run: dotnet publish Web/NuzlockePlanner.Web.csproj -c Release -o release
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
