@@ -7,8 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Components\" />
       <Folder Include="Models\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Components">
+        <HintPath>..\..\..\.nuget\packages\microsoft.aspnetcore.components\10.0.11\lib\net10.0\Microsoft.AspNetCore.Components.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
