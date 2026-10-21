@@ -28,10 +28,10 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 10.0.x
-          
+
       - name: Restore NuGet packages
         run: dotnet restore
-      
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
@@ -41,10 +41,13 @@ jobs:
       - name: Run Web Tests
         run: cd Web.Test && dotnet test
 
-      - name: Build
-        run: dotnet build Web/Web.csproj -c Release
-      - name: Publish
-        run: dotnet publish Web/Web.csproj -c Release -o release
+      - name: Build and Publish
+        run: |
+          dotnet build Web/Web.csproj -c Release
+          dotnet publish Web/Web.csproj -c Release -o release
+          cd release/wwwroot
+          mkdir -p _framework
+          cp -r ../../Web/bin/Release/net10.0/wasm/ *_framework
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
