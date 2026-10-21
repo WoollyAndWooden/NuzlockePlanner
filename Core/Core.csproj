@@ -11,9 +11,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Microsoft.AspNetCore.Components">
-        <HintPath>..\..\..\.nuget\packages\microsoft.aspnetcore.components\10.0.11\lib\net10.0\Microsoft.AspNetCore.Components.dll</HintPath>
-      </Reference>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="10.0.11" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="10.0.11" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.11" />
     </ItemGroup>
 
 </Project>
