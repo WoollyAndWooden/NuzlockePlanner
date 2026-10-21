@@ -1,6 +1,39 @@
 ﻿@page "/"
 
+@using Core.Services
+@using Core.Models
 
 <PageTitle>Home</PageTitle>
 <Pokedex />
+
+@code {
+    @inject PokemonService pokemonService
+
+    Pokemon? pokemon = null;
+    Exception? error = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            pokemon = await pokemonService.GetPokemonAsync(1);
+        }
+        catch (Exception ex)
+        {
+            error = ex;
+        }
+    }
+}
+
+@if (error != null)
+{
+    <h2>Error:</h2>
+    <pre>@error.Message</pre>
+}
+
+@if (pokemon != null)
+{
+    <h2>Pokemon Data:</h2>
+    <pre>@Json.Serialize(pokemon)</pre>
+}
 
