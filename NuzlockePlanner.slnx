@@ -1,5 +1,6 @@
 <Solution>
-  <Project Path="NuzlockePlanner.E2E.Tests/NuzlockePlanner.E2E.Tests.csproj" />
-  <Project Path="NuzlockePlanner.Shared/NuzlockePlanner.Shared.csproj" />
-  <Project Path="NuzlockePlanner.Web/NuzlockePlanner.Web.csproj" />
+  <Project Path="Core.Test/Core.Test.csproj" />
+  <Project Path="Core/Core.csproj" />
+  <Project Path="Web.Test/Web.Test.csproj" />
+  <Project Path="Web/Web.csproj" />
 </Solution>
