@@ -115,4 +115,10 @@ public class GameDetailsService : PokeApiService
         }
         return data;
     }
+
+    public async Task<int> GetGenerationCountAsync()
+    {
+        var generations = await GetDataAsync<List<Generation>>($"{baseUrl}generation/?limit=1");
+        return generations?.Count ?? 0;
+    }
 }
