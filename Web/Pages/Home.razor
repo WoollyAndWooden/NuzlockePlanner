@@ -1,40 +1,5 @@
 ﻿@page "/"
-@inject PokemonService pokemonService
-
-@using Core.Models
-@using System.Text.Json
 
 <PageTitle>Home</PageTitle>
 <Pokedex />
-
-@code {
-    
-
-    Pokemon? pokemon = null;
-    Exception? error = null;
-
-    protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            pokemon = await pokemonService.GetPokemonAsync(1);
-        }
-        catch (Exception ex)
-        {
-            error = ex;
-        }
-    }
-}
-
-@if (error != null)
-{
-    <h2>Error:</h2>
-    <pre>@error.Message</pre>
-}
-
-@if (pokemon != null)
-{
-    <h2>Pokemon Data:</h2>
-    @JsonSerializer.Serialize(pokemon)
-}
 

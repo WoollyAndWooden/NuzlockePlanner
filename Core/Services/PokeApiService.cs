@@ -4,7 +4,7 @@ namespace Core.Services;
 
 public abstract class PokeApiService
 {
-    protected static string baseUrl =  "https://pokeapi.co/api/v2/";
+    protected static readonly string baseUrl =  "https://pokeapi.co/api/v2/";
     protected readonly HttpClient httpClient;
     protected PokeApiService(HttpClient httpClient)
     {

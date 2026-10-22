@@ -4,13 +4,6 @@ namespace Core.Services;
 
 public class PokemonService : PokeApiService
 {
-    private readonly string _pokemonUrl = $"{baseUrl}pokemon/";
-    private readonly string _abilityUrl = $"{baseUrl}ability/";
-    private readonly string _natureUrl = $"{baseUrl}nature/";
-    private readonly string _typeUrl = $"{baseUrl}type/";
-    private readonly string _evolutionLineUrl = $"{baseUrl}evolution-chain/";
-    private readonly string _statUrl = $"{baseUrl}stat/";
-    
     private List<Specie> _pokemonSpecies = new List<Specie>();
     private List<Ability> _pokemonAbilities = new List<Ability>();
     private List<Nature> _pokemonNatures = new List<Nature>();
@@ -27,7 +20,7 @@ public class PokemonService : PokeApiService
         var data = _pokemonSpecies.FirstOrDefault(x => x.SpecieId == id);
         if (data is null)
         {
-            data = await GetDataAsync<Specie>($"{_pokemonUrl}{id}");
+            data = await GetDataAsync<Specie>($"{baseUrl}pokemon/{id}");
             if (data is not null)
             {
                 _pokemonSpecies.Add(data);
@@ -41,7 +34,7 @@ public class PokemonService : PokeApiService
         var data = _pokemonAbilities.FirstOrDefault(x => x.abilityId == id);
         if (data is null)
         {
-            data = await GetDataAsync<Ability>($"{_abilityUrl}{id}");
+            data = await GetDataAsync<Ability>($"{baseUrl}ability/{id}");
             if (data is not null)
             {
                 _pokemonAbilities.Add(data);
@@ -54,7 +47,7 @@ public class PokemonService : PokeApiService
         var data = _pokemonNatures.FirstOrDefault(x => x.NatureId == id);
         if (data is null)
         {
-            data = await GetDataAsync<Nature>($"{_natureUrl}{id}");
+            data = await GetDataAsync<Nature>($"{baseUrl}nature/{id}");
             if (data is not null)
             {
                 _pokemonNatures.Add(data);
@@ -68,7 +61,7 @@ public class PokemonService : PokeApiService
         var data = _pokemonTypes.FirstOrDefault(x => x.typeId == id);
         if (data is null)
         {
-            data = await GetDataAsync<PokemonType>($"{_typeUrl}{id}");
+            data = await GetDataAsync<PokemonType>($"{baseUrl}type/{id}");
             if (data is not null)
             {
                 _pokemonTypes.Add(data);
@@ -82,7 +75,7 @@ public class PokemonService : PokeApiService
         var data = _pokemonEvolutionLines.FirstOrDefault(x => x.evolutionLineId == id);
         if (data is null)
         {
-            data = await GetDataAsync<EvolutionLine>($"{_evolutionLineUrl}{id}");
+            data = await GetDataAsync<EvolutionLine>($"{baseUrl}evolution-chain/{id}");
             if (data is not null)
             {
                 _pokemonEvolutionLines.Add(data);
@@ -96,7 +89,7 @@ public class PokemonService : PokeApiService
         var data = _pokemonStats.FirstOrDefault(x => x.StatId == id);
         if (data is null)
         {
-            data = await GetDataAsync<Stat>($"{_statUrl}{id}");
+            data = await GetDataAsync<Stat>($"{baseUrl}stat/{id}");
             if (data is not null)
             {
                 _pokemonStats.Add(data);
