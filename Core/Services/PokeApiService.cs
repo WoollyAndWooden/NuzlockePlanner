@@ -11,7 +11,7 @@ public abstract class PokeApiService
         this.httpClient = httpClient;
     }
 
-    public async Task<T?> GetDataAsync<T>(string url) where T : class
+    protected async Task<T?> GetDataAsync<T>(string url) where T : class
     {
         var response = await httpClient.GetAsync(url);
         var content = await response.Content.ReadAsStringAsync();
