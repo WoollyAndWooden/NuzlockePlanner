@@ -4,10 +4,13 @@ namespace Core.Services;
 
 public class PokemonService : PokeApiService
 {
+    private readonly string baseUrl = "https://pokeapi.co/api/v2/";
     private readonly string _pokemonUrl = $"{baseUrl}pokemon/";
     private readonly string _abilityUrl = $"{baseUrl}ability/";
     private readonly string _natureUrl = $"{baseUrl}nature/";
     private readonly string _typeUrl = $"{baseUrl}type/";
+    private readonly string _evolutionLineUrl = $"{baseUrl}evolution-chain/";
+    private readonly string _statUrl = $"{baseUrl}stat/";
     
     private List<Specie> _pokemonSpecies = new List<Specie>();
     private List<Ability> _pokemonAbilities = new List<Ability>();
@@ -18,7 +21,7 @@ public class PokemonService : PokeApiService
     
     public PokemonService(HttpClient httpClient) : base(httpClient)
     {
-        
+        baseUrl = "https://pokeapi.co/api/v2/";
     }
 
     public async Task<Specie?> GetPokemonAsync(int id)
