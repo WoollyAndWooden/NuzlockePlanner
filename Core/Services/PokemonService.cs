@@ -75,4 +75,32 @@ public class PokemonService : PokeApiService
         }
         return data;
     }
+
+    public async Task<EvolutionLine?> GetEvolutionLineAsync(int id)
+    {
+        var data = _pokemonEvolutionLines.FirstOrDefault(x => x.lineId == id);
+        if (data is null)
+        {
+            data = await GetDataAsync<EvolutionLine>($"{_evolutionLineUrl}{id}");
+            if (data is not null)
+            {
+                _pokemonEvolutionLines.Add(data);
+            }
+        }
+        return data;
+    }
+
+    public async Task<Stat?> GetStatAsync(int id)
+    {
+        var data = _pokemonStats.FirstOrDefault(x => x.statId == id);
+        if (data is null)
+        {
+            data = await GetDataAsync<Stat>($"{_statUrl}{id}");
+            if (data is not null)
+            {
+                _pokemonStats.Add(data);
+            }
+        }
+        return data;
+    }
 }
