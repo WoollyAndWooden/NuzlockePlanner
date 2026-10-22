@@ -1,13 +1,14 @@
 ﻿@page "/"
+@inject PokemonService pokemonService
 
-@using Core.Services
 @using Core.Models
+@using System.Text.Json
 
 <PageTitle>Home</PageTitle>
 <Pokedex />
 
 @code {
-    @inject PokemonService pokemonService
+    
 
     Pokemon? pokemon = null;
     Exception? error = null;
@@ -34,6 +35,6 @@
 @if (pokemon != null)
 {
     <h2>Pokemon Data:</h2>
-    <pre>@Json.Serialize(pokemon)</pre>
+    @JsonSerializer.Serialize(pokemon)
 }
 

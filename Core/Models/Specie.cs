@@ -1,12 +1,15 @@
+using System.Text.Json.Serialization;
+
 namespace Core.Models;
 
 public class Specie
 {
-    public uint specieId { get; set; }
-    public List<(Ability, bool)> availableAbilities { get; set; }
-    public List<Game> gamesCatchable { get; set; }
-    public List<Stat> BST { get; set; }
-    public List<PokemonType>  types { get; set; }
-    public EvolutionLine evolutionLine { get; set; }
-    public PokemonCategory pokemonCategory { get; set; }
+    public uint SpecieId { get; set; }
+    public List<(Ability, bool)> AvailableAbilities = new List<(Ability, bool)>();
+    public List<Game> GamesCatchable = new List<Game>();
+    public Dictionary<Stat, uint> Bst = new Dictionary<Stat, uint>();
+    public List<PokemonType> Types = new List<PokemonType>();
+    public EvolutionLine EvolutionLine { get; set; }
+    public PokemonCategory PokemonCategory { get; set; }
+    public string Sprite  { get; set; }
 }

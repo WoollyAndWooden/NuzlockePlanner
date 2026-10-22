@@ -2,7 +2,6 @@ namespace Core.Models;
 
 public class Stat
 {
-    public uint statId { get; set; }
-    public string name { get; set; }
-    public uint value { get; set; }
+    public uint StatId { get; set; }
+    public string Name { get; set; }
 }

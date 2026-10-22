@@ -4,7 +4,6 @@ namespace Core.Services;
 
 public class PokemonService : PokeApiService
 {
-    private readonly string baseUrl = "https://pokeapi.co/api/v2/";
     private readonly string _pokemonUrl = $"{baseUrl}pokemon/";
     private readonly string _abilityUrl = $"{baseUrl}ability/";
     private readonly string _natureUrl = $"{baseUrl}nature/";
@@ -21,12 +20,11 @@ public class PokemonService : PokeApiService
     
     public PokemonService(HttpClient httpClient) : base(httpClient)
     {
-        baseUrl = "https://pokeapi.co/api/v2/";
     }
 
     public async Task<Specie?> GetPokemonAsync(int id)
     {
-        var data = _pokemonSpecies.FirstOrDefault(x => x.specieId == id);
+        var data = _pokemonSpecies.FirstOrDefault(x => x.SpecieId == id);
         if (data is null)
         {
             data = await GetDataAsync<Specie>($"{_pokemonUrl}{id}");
@@ -53,7 +51,7 @@ public class PokemonService : PokeApiService
     }
     public async Task<Nature?> GetNatureAsync(int id)
     {
-        var data = _pokemonNatures.FirstOrDefault(x => x.natureId == id);
+        var data = _pokemonNatures.FirstOrDefault(x => x.NatureId == id);
         if (data is null)
         {
             data = await GetDataAsync<Nature>($"{_natureUrl}{id}");
@@ -81,7 +79,7 @@ public class PokemonService : PokeApiService
 
     public async Task<EvolutionLine?> GetEvolutionLineAsync(int id)
     {
-        var data = _pokemonEvolutionLines.FirstOrDefault(x => x.lineId == id);
+        var data = _pokemonEvolutionLines.FirstOrDefault(x => x.evolutionLineId == id);
         if (data is null)
         {
             data = await GetDataAsync<EvolutionLine>($"{_evolutionLineUrl}{id}");
@@ -95,7 +93,7 @@ public class PokemonService : PokeApiService
 
     public async Task<Stat?> GetStatAsync(int id)
     {
-        var data = _pokemonStats.FirstOrDefault(x => x.statId == id);
+        var data = _pokemonStats.FirstOrDefault(x => x.StatId == id);
         if (data is null)
         {
             data = await GetDataAsync<Stat>($"{_statUrl}{id}");

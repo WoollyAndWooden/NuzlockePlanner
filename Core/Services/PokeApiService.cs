@@ -2,7 +2,7 @@ using System.Text.Json;
 
 namespace Core.Services;
 
-public abstract class PokeApiService<T> where T : class
+public abstract class PokeApiService
 {
     protected static string baseUrl =  "https://pokeapi.co/api/v2/";
     protected readonly HttpClient httpClient;
@@ -11,7 +11,7 @@ public abstract class PokeApiService<T> where T : class
         this.httpClient = httpClient;
     }
 
-    public async Task<T> GetDataAsync(string url)
+    public async Task<T?> GetDataAsync<T>(string url) where T : class
     {
         var response = await httpClient.GetAsync(url);
         var content = await response.Content.ReadAsStringAsync();

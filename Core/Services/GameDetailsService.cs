@@ -1,9 +1,4 @@
-namespace Core.Services;
-
-public class GameDetailsService
-{
-    
-}using Core.Models;
+using Core.Models;
 
 namespace Core.Services;
 
@@ -21,13 +16,6 @@ public class GameDetailsService : PokeApiService
 
     public GameDetailsService(HttpClient httpClient) : base(httpClient)
     {
-        baseUrl = "https://pokeapi.co/api/v2/";
-    }
-
-    private async Task<T?> GetDataAsync<T>(string url) where T : class
-    {
-        var data = await base.GetDataAsync<T>(url);
-        return data;
     }
 
     public async Task<VersionGroup?> GetVersionGroupAsync(int id)
