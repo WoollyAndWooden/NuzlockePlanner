@@ -20,7 +20,7 @@ public class GameDetailsService : PokeApiService
 
     public async Task<VersionGroup?> GetVersionGroupAsync(int id)
     {
-        var data = _versionGroups.FirstOrDefault(x => x.id == id);
+        var data = _versionGroups.FirstOrDefault(x => x.versionGroupId == id);
         if (data is null)
         {
             data = await GetDataAsync<VersionGroup>($"{baseUrl}version-group/{id}");
@@ -34,7 +34,7 @@ public class GameDetailsService : PokeApiService
 
     public async Task<Game?> GetGameAsync(int id)
     {
-        var data = _games.FirstOrDefault(x => x.id == id);
+        var data = _games.FirstOrDefault(x => x.gameIdId == id);
         if (data is null)
         {
             data = await GetDataAsync<Game>($"{baseUrl}game/{id}");
@@ -48,7 +48,7 @@ public class GameDetailsService : PokeApiService
 
     public async Task<Region?> GetRegionAsync(int id)
     {
-        var data = _regions.FirstOrDefault(x => x.id == id);
+        var data = _regions.FirstOrDefault(x => x.regionIdId == id);
         if (data is null)
         {
             data = await GetDataAsync<Region>($"{baseUrl}region/{id}");
@@ -62,7 +62,7 @@ public class GameDetailsService : PokeApiService
 
     public async Task<Location?> GetLocationAsync(int id)
     {
-        var data = _locations.FirstOrDefault(x => x.id == id);
+        var data = _locations.FirstOrDefault(x => x.locationIdId == id);
         if (data is null)
         {
             data = await GetDataAsync<Location>($"{baseUrl}location/{id}");
@@ -76,7 +76,7 @@ public class GameDetailsService : PokeApiService
 
     public async Task<Area?> GetAreaAsync(int id)
     {
-        var data = _areas.FirstOrDefault(x => x.id == id);
+        var data = _areas.FirstOrDefault(x => x.areaIdId == id);
         if (data is null)
         {
             data = await GetDataAsync<Area>($"{baseUrl}area/{id}");
@@ -90,7 +90,7 @@ public class GameDetailsService : PokeApiService
 
     public async Task<Encounter?> GetEncounterAsync(int id)
     {
-        var data = _encounters.FirstOrDefault(x => x.id == id);
+        var data = _encounters.FirstOrDefault(x => x.encounterIdId == id);
         if (data is null)
         {
             data = await GetDataAsync<Encounter>($"{baseUrl}encounter/{id}");
@@ -104,7 +104,7 @@ public class GameDetailsService : PokeApiService
 
     public async Task<EncounterMethod?> GetEncounterMethodAsync(int id)
     {
-        var data = _encounterMethods.FirstOrDefault(x => x.id == id);
+        var data = _encounterMethods.FirstOrDefault(x => x.encounterMethodIdId == id);
         if (data is null)
         {
             data = await GetDataAsync<EncounterMethod>($"{baseUrl}encounter-method/{id}");
