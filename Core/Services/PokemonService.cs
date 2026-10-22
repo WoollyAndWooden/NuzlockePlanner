@@ -42,13 +42,23 @@ public class PokemonService : PokeApiService
     }
     public async Task<Nature?> GetNatureAsync(int id)
     {
-        var data = await GetDataAsync<Nature>($"{pokemonUrl}{id}");
+        var data = pokemonNatures.FirstOrDefault(x => x.natureId == id);
+        if (data is null)
+        {
+            data = await GetDataAsync<Nature>($"{natureUrl}{id}");
+            pokemonNatures.Add(data);
+        }
         return data;
     }
 
     public async Task<PokemonType?> GetPokemonTypeAsync(int id)
     {
-        var data = await GetDataAsync<PokemonType>($"{abilityUrl}{id}");
+        var data = pokemonTypes.FirstOrDefault(x => x.typeId == id);
+        if (data is null)
+        {
+            data = await GetDataAsync<PokemonType>($"{typeUrl}{id}");
+            pokemonTypes.Add(data);
+        }
         return data;
     }
 }
