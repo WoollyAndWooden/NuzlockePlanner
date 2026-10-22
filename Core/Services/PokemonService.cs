@@ -49,7 +49,10 @@ public class PokemonService : PokeApiService
         if (data is null)
         {
             data = await GetDataAsync<Nature>($"{_natureUrl}{id}");
-            _pokemonNatures.Add(data);
+            if (data is not null)
+            {
+                _pokemonNatures.Add(data);
+            }
         }
         return data;
     }
@@ -60,7 +63,10 @@ public class PokemonService : PokeApiService
         if (data is null)
         {
             data = await GetDataAsync<PokemonType>($"{_typeUrl}{id}");
-            _pokemonTypes.Add(data);
+            if (data is not null)
+            {
+                _pokemonTypes.Add(data);
+            }
         }
         return data;
     }
