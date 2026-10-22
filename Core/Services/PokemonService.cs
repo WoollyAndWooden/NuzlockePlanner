@@ -13,6 +13,8 @@ public class PokemonService : PokeApiService
     private List<Ability> _pokemonAbilities = new List<Ability>();
     private List<Nature> _pokemonNatures = new List<Nature>();
     private List<PokemonType> _pokemonTypes = new List<PokemonType>();
+    private List<EvolutionLine> _pokemonEvolutionLines = new List<EvolutionLine>();
+    private List<Stat> _pokemonStats = new List<Stat>();
     
     public PokemonService(HttpClient httpClient) : base(httpClient)
     {
@@ -39,7 +41,10 @@ public class PokemonService : PokeApiService
         if (data is null)
         {
             data = await GetDataAsync<Ability>($"{_abilityUrl}{id}");
-            _pokemonAbilities.Add(data);
+            if (data is not null)
+            {
+                _pokemonAbilities.Add(data);
+            }
         }
         return data;
     }
