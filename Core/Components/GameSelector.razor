@@ -6,7 +6,7 @@
             disabled="@_lockGeneration"
             class="game-selector-button@(_selectedGeneration?.id == generation.id ? " active" : "")"
             @onclick="() => _selectGeneration(generation?.id ?? 0)">
-            @generation.name
+            @generation.GetName()
         </button>
     }
     @if (_selectedGeneration is not null)
@@ -26,7 +26,7 @@
                 disabled="@LockVersionGroups"
                 class="game-selector-button@(_selectedVersionGroup?.id == versionGroup.id ? " active" : "")"
                 @onclick="() => _selectVersionGroup(versionGroup?.id ?? 0)">
-                @versionGroup.name
+                @versionGroup.GetName()
             </button>
         }
         @if (_selectedVersionGroup is not null)
@@ -47,7 +47,7 @@
                 disabled="@_lockGame"
                 class="game-selector-button@(_selectedGame?.id == game.id ? " active" : "")"
                 @onclick="() => _selectGame(game?.id ?? 0)">
-                @game.name
+                @game.GetName()
             </button>
         }
         @if (_selectedGame is not null)

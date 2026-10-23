@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace Core.Models;
 
 public abstract class NameIdResource
@@ -8,5 +10,10 @@ public abstract class NameIdResource
     public virtual void FullInitialization(NameIdResource data)
     {
         id = data.id;
+    }
+    
+    public virtual string GetName()
+    {
+        return Regex.Replace(name.Replace('-', ' '), @"\b\w", m => m.Value.ToUpper());
     }
 }
