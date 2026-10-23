@@ -1,0 +1,60 @@
+<div class="game-selector-list">
+    @foreach (var generation in _generations)
+    {
+        <button
+            type="button"
+            disabled="@_lockGeneration"
+            class="game-selector-button@(_selectedGeneration?.id == generation.id ? " active" : "")"
+            @onclick="() => _selectGeneration(generation?.id ?? 0)">
+            @generation.name
+        </button>
+    }
+    @if (_selectedGeneration is not null)
+    {
+        <button type="button" disabled="@LockVersionGroups" class="lockButton" @onclick="() => _lockGeneration = !_lockGeneration ">
+            Lock Selection
+        </button>
+    }
+</div>
+@if (_displayVersionGroups)
+{
+    <div class="game-selector-list">
+        @foreach (var versionGroup in _versionGroupsForGeneration)
+        {
+            <button
+                type="button"
+                disabled="@LockVersionGroups"
+                class="game-selector-button@(_selectedVersionGroup?.id == versionGroup.id ? " active" : "")"
+                @onclick="() => _selectVersionGroup(versionGroup?.id ?? 0)">
+                @versionGroup.name
+            </button>
+        }
+        @if (_selectedVersionGroup is not null)
+        {
+            <button type="button" disabled="@LockGame" class="lockButton" @onclick="() => LockVersionGroups = !LockVersionGroups ">
+                Lock Selection
+            </button>
+        }
+    </div>
+}
+@if (_displayGames)
+{
+    <div class="game-selector-list">
+        @foreach (var game in _games)
+        {
+            <button
+                type="button"
+                disabled="@_lockGame"
+                class="game-selector-button@(_selectedGame?.id == game.id ? " active" : "")"
+                @onclick="() => _selectGame(game?.id ?? 0)">
+                @game.name
+            </button>
+        }
+        @if (_selectedGame is not null)
+        {
+            <button type="button" class="lockButton" @onclick="() => LockGame = !LockGame ">
+                Lock Selection
+            </button>
+        }
+    </div>
+}

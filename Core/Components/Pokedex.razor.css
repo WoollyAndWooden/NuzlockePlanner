@@ -1,0 +1,36 @@
+.pokedex-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.grid-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.number-container {
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 8px;
+    min-width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.number {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.number-container:hover {
+    transform: translateY(-2px);
+}                  
