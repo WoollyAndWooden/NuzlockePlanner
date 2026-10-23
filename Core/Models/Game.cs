@@ -1,11 +1,15 @@
 namespace Core.Models;
 
-public class Game
+public class Game : NameIdResource
 {
-    public uint gameIdId { get; set; }
-    public string name { get; set; }
-    public uint? generation { get; set; }
-    public List<Region> region { get; set; }
-    public Pokedex pokedex { get; set; }
-    public VersionGroup versionGroup { get; set; }
+    public VersionGroup version_group { get; set; }
+    public override void FullInitialization(NameIdResource data)
+    {
+        base.FullInitialization(data);
+        if (data is Game full)
+        {
+            version_group = full.version_group;
+
+        }
+    }
 }

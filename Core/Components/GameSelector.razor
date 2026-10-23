@@ -1,34 +1,25 @@
-@using Core.Models
-@using Core.Services
-@using Microsoft.AspNetCore.Components
-
 <div class="game-selector-list">
-    @foreach (var generation in generations)
+    @foreach (var generation in _generations)
     {
-        <button 
-            class="game-selector-button@(selectedGeneration?.id == generation.id ? " active" : "")" 
-            @onclick="() => SelectGeneration(generation.id)"
-        >
+        <button
+            type="button"
+            class="game-selector-button@(_selectedGeneration?.id == generation.id ? " active" : "")"
+            @onclick="() => _selectGeneration(generation?.id ?? 0)">
             @generation.name
         </button>
     }
 </div>
-
-@code {
-    [Parameter]
-    public List<Generation> generations { get; set; } = new();
-
-    [Parameter]
-    public EventCallback<int> OnGenerationSelected { get; set; }
-
-    [Inject]
-    private GameDetailsService gameDetailsService { get; set; } = null!;
-
-    private Generation? selectedGeneration = null;
-
-    private async Task SelectGeneration(int generationId)
-    {
-        selectedGeneration = await gameDetailsService.GetGenerationAsync(generationId);
-        await OnGenerationSelected.InvokeAsync(generationId);
-    }
+@if (displayVersionGroups)
+{
+    <div class="game-selector-list">
+        @foreach (var versionGroup in _versionGroupsForGeneration)
+        {
+            <button
+                type="button"
+                class="game-selector-button@(_selectedGeneration?.id == versionGroup.id ? " active" : "")"
+                @onclick="() => _selectVersionGroup(versionGroup?.id ?? 0)">
+                @versionGroup.name
+            </button>
+        }
+    </div>
 }

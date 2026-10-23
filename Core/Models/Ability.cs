@@ -2,7 +2,7 @@ namespace Core.Models;
 
 public class Ability
 {
-    public uint abilityId { get; set; }
+    public uint id { get; set; }
     public string name { get; set; }
     public string effect { get; set; }
 }
