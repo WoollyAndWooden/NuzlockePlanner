@@ -4,7 +4,7 @@
         <button
             type="button"
             disabled="@_lockGeneration"
-            class="generation-selector-button@(_selectedGeneration?.id == generation.id ? " active" : "")"
+            class="game-selector-button@(_selectedGeneration?.id == generation.id ? " active" : "")"
             @onclick="() => _selectGeneration(generation?.id ?? 0)">
             @generation.name
         </button>
@@ -24,7 +24,7 @@
             <button
                 type="button"
                 disabled="@LockVersionGroups"
-                class="versiongroup-selector-button@(_selectedVersionGroup?.id == versionGroup.id ? " active" : "")"
+                class="game-selector-button@(_selectedVersionGroup?.id == versionGroup.id ? " active" : "")"
                 @onclick="() => _selectVersionGroup(versionGroup?.id ?? 0)">
                 @versionGroup.name
             </button>
