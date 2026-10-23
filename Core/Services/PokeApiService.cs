@@ -46,7 +46,7 @@ public class PokeApiService
     }
     public async Task<Generation?> GetGenerationAsync(int? id = null, string? name = null)
     {
-        var identifier = id?.ToString() ?? name;
+        var identifier = GetIdentifier(id, name);
         if (identifier is null)
             return null;
         bool? isFullyInitialized = IsFullyInitialized(_generations, id, name);
@@ -76,7 +76,7 @@ public class PokeApiService
     // VERSIONGROUPSECTION
     public async Task<VersionGroup?> GetVersionGroupAsync(int? id = null, string? name = null)
     {
-        var identifier = id?.ToString() ?? name;
+        var identifier = GetIdentifier(id, name);
         if(identifier is null)
             return null;
         bool? isFullyInitialized = IsFullyInitialized(_versionGroups, id, name);
@@ -84,7 +84,7 @@ public class PokeApiService
         if (data is null)
         {
             data = await GetDataAsync<VersionGroup>($"{BaseUrl}version-group/{identifier}");
-            if (data is not null)
+            if (data.name is not null)
             {
                 data.generation = await GetGenerationAsync(name: data.generation.name ?? "");
                 if (isFullyInitialized == false)
@@ -102,18 +102,25 @@ public class PokeApiService
         }
         return data;
     }
-    
-    
 
-    public async Task<Game?> GetGameAsync(int id)
+    public async Task<Game?> GetGameAsync(int? id = null, string? name = null)
     {
-        var data = _games.FirstOrDefault(x => x.id == id);
+        var identifier = GetIdentifier(id, name);
+        if(identifier is null)
+            return null;
+        bool? isFullyInitialized = IsFullyInitialized(_games, id, name);
+        var data = (isFullyInitialized == true) ? _games.FirstOrDefault(x => x.id == id) : null;;
         if (data is null)
         {
-            data = await GetDataAsync<Game>($"{BaseUrl}game/{id}");
-            if (data is not null)
+            data = await GetDataAsync<Game>($"{BaseUrl}version/{identifier}");
+            if (data.name is not null)
             {
-                _games.Add(data);
+                data.version_group = await GetVersionGroupAsync(name: data.version_group.name);
+
+                if (isFullyInitialized == false)
+                    _games.FirstOrDefault(x => x.id is null && x.name == data.name)?.FullInitialization(data);
+                else
+                    _games.Add(data);
             }
         }
         return data;
@@ -286,6 +293,8 @@ public class PokeApiService
         if(IsFullyInitialized(listToAdd, data.id, data.name) is null)
             listToAdd.Add(data);
     }
+    
+    private string? GetIdentifier(int? id = null, string? name = null) =>  id?.ToString() ?? name;
     
     private async Task<T?> GetDataAsync<T>(string url) where T : class
     {
