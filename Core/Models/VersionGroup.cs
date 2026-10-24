@@ -2,7 +2,7 @@ namespace Core.Models;
 
 public class VersionGroup : NameIdResource
 {
-    public int order { get; set; }
+    public int? order { get; set; }
     public List<Game> versions { get; set; } = [];
     public List<Region> regions { get; set; } = [];
     public List<Pokedex> pokedexes { get; set; } = [];

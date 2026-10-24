@@ -1,13 +1,14 @@
+@using Core.Services
 
 
 <div class="pokedex-container">                                                                                                                                                                                   
     <div class="grid-container">
         @if (_pokedex is not null)
         {
-            @for (int i = 1; i <= _pokedex.pokemon_entries.Count; i++)
+            @foreach (var pokemon in _pokedex.pokemon_entries)
             {
                 <div class="number-container">
-                    <div class="number">@i</div>
+                    <img src="@_spriteState.GetSprite(pokemon.pokemon_species.name)"/>
                 </div>
             }
         }

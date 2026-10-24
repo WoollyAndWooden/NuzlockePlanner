@@ -14,4 +14,5 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 builder.Services.AddScoped<PokeApi>();
 builder.Services.AddScoped<GameSelectionState>();
+builder.Services.AddScoped<SpriteState>();
 await builder.Build().RunAsync();

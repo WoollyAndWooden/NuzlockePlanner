@@ -221,15 +221,24 @@ public class PokeApi
         return data;
     }
     
-    public async Task<Specie?> GetPokemonAsync(int id)
+    public async Task<Specie?> GetSpecieAsync(int? id = null, string? name = null)
     {
-        var data = _pokemonSpecies.FirstOrDefault(x => x.SpecieId == id);
+        var identifier = GetIdentifier(id, name);
+        if(identifier is null)
+            return null;
+        bool? isFullyInitialized = IsFullyInitialized(_pokemonSpecies, id, name);
+        var data = (isFullyInitialized == true) ? _pokemonSpecies.FirstOrDefault(x => x.id == id) : null;
         if (data is null)
         {
-            data = await GetDataAsync<Specie>($"{BaseUrl}pokemon/{id}");
-            if (data is not null)
+            data = await GetDataAsync<Specie>($"{BaseUrl}pokemon-species/{identifier}");
+            if (data.name is not null)
             {
-                _pokemonSpecies.Add(data);
+                //data.version_group = await GetVersionGroupAsync(name: data.version_group.name);
+
+                if (isFullyInitialized == false)
+                    _pokemonSpecies.FirstOrDefault(x => x.id is null && x.name == data.name)?.FullInitialization(data);
+                else
+                    _pokemonSpecies.Add(data);
             }
         }
         return data;
