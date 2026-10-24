@@ -12,5 +12,6 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-builder.Services.AddScoped<PokeApiService>();
+builder.Services.AddScoped<PokeApi>();
+builder.Services.AddScoped<GameSelectionState>();
 await builder.Build().RunAsync();
