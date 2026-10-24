@@ -53,7 +53,7 @@ public class SpriteState
                     _ => ($"{versionGroup.name}/", "icons/", ".png"),
                 },
                 "generation-iv" => ($"{versionGroup.name}/animated/", "icons/", ".png"),
-                "generation-v" => ("black-white/animated", "icons/", ".png"),
+                "generation-v" => ("black-white/animated", "icons/", ".gif"),
                 "generation-vi" => ($"{versionGroup.name}/", "icons/", ".png"),
                 "generation-vii" => versionGroup.name switch
                 {
@@ -63,7 +63,7 @@ public class SpriteState
                 "generation-viii" => versionGroup.name switch
                 {
                     "brilliant-diamond-shining-pearl" => ("brilliant-diamond-shining-pearl/", "brilliant-diamond-shining-pearl/icons/", ".png"),
-                    _ => ("sword-shield/", "sword-shield/icons/", ".gif"),
+                    _ => ("sword-shield/", "sword-shield/icons/", ".webp"),
                 },
                 "generation-ix" => versionGroup.name switch
                 {
