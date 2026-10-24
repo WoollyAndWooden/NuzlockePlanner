@@ -7,17 +7,18 @@ namespace Core.Components;
 public partial class GameSelector
 {
     [Inject]
-    PokeApiService PokeApiService { get; set; }
+    private PokeApi _pokeApi { get; set; }
+    [Inject]
+    private GameSelectionState _gameSelectionState { get; set; }
     
     [Parameter]
-    public EventCallback<int> OnGenerationSelected { get; set; }
+    public EventCallback<int> OnGameSelected { get; set; }
 
     private bool _lockGeneration = false;
     private Generation? _selectedGeneration;
     private List<Generation> _generations = [];
     
     private bool _lockVersionGroups = false;
-    private VersionGroup? _selectedVersionGroup;
     private readonly List<VersionGroup> _versionGroupsForGeneration = [];
     private bool _displayVersionGroups = false;
 
@@ -34,7 +35,6 @@ public partial class GameSelector
 
     private bool _lockGame = false;
     private bool _displayGames = false;
-    private Game? _selectedGame;
     private List<Game> _games = [];
 
     public bool LockGame
@@ -53,17 +53,17 @@ public partial class GameSelector
     
     protected override async Task OnInitializedAsync()
     {
-        _generations = await PokeApiService.GetAllGenerationsAsync();
+        _generations = await _pokeApi.GetAllGenerationsAsync();
     }
     
     private async Task _selectGeneration(int generationId)
     {
-        _selectedGeneration = await PokeApiService.GetGenerationAsync(generationId);
+        _selectedGeneration = await _pokeApi.GetGenerationAsync(generationId);
         _clearVersionGroups();
         _clearGame();
         foreach (var versionGroup in _selectedGeneration?.version_groups!)
         {
-            var versionGroupToAdd = await PokeApiService.GetVersionGroupAsync(null, versionGroup.name);
+            var versionGroupToAdd = await _pokeApi.GetVersionGroupAsync(null, versionGroup.name);
             if (versionGroupToAdd is not null)
                 _versionGroupsForGeneration.Add(versionGroupToAdd);
         }
@@ -72,11 +72,11 @@ public partial class GameSelector
     
     private async Task _selectVersionGroup(int versionGroupId)
     {
-        _selectedVersionGroup = await PokeApiService.GetVersionGroupAsync(versionGroupId);
+        _gameSelectionState.SelectedVersionGroup = await _pokeApi.GetVersionGroupAsync(versionGroupId);
         _clearGame();
-        foreach (var games in _selectedVersionGroup?.versions!)
+        foreach (var games in _gameSelectionState.SelectedVersionGroup?.versions!)
         {
-            var gameToAdd = await PokeApiService.GetGameAsync(name: games.name);
+            var gameToAdd = await _pokeApi.GetGameAsync(name: games.name);
             if (gameToAdd is not null)
                 _games.Add(gameToAdd);
         }
@@ -86,19 +86,20 @@ public partial class GameSelector
     private void _clearVersionGroups()
     {
         _versionGroupsForGeneration.Clear();
-        _selectedVersionGroup = null;
         _displayVersionGroups = false;
+        _gameSelectionState.SelectedVersionGroup = null;
     }
 
     private async Task _selectGame(int gameId)
     {
-        _selectedGame = await PokeApiService.GetGameAsync(gameId);
+        _gameSelectionState.SelectedGame = await _pokeApi.GetGameAsync(gameId);
+        _gameSelectionState.SelectedGame = _gameSelectionState.SelectedGame;
     }
 
     private void _clearGame()
     {
         _games.Clear();
-        _selectedGame = null;
         _displayGames = false;
+        _gameSelectionState.SelectedGame = null;
     }
 }

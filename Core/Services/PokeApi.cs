@@ -4,7 +4,7 @@ using Core.Models.Dto;
 
 namespace Core.Services;
 
-public class PokeApiService
+public class PokeApi
 {
     private const string BaseUrl = "https://pokeapi.co/api/v2/";
 
@@ -26,7 +26,7 @@ public class PokeApiService
     private readonly List<Stat> _pokemonStats = [];
     
     private readonly HttpClient _httpClient;
-    public PokeApiService(HttpClient httpClient)
+    public PokeApi(HttpClient httpClient)
     {
         this._httpClient = httpClient;
     }
@@ -102,7 +102,8 @@ public class PokeApiService
         }
         return data;
     }
-
+    
+    // GAME VERSION SECTION
     public async Task<Game?> GetGameAsync(int? id = null, string? name = null)
     {
         var identifier = GetIdentifier(id, name);
@@ -121,6 +122,30 @@ public class PokeApiService
                     _games.FirstOrDefault(x => x.id is null && x.name == data.name)?.FullInitialization(data);
                 else
                     _games.Add(data);
+            }
+        }
+        return data;
+    }
+    
+    // POKEDEX SECTION
+    public async Task<Pokedex?> GetPokedexAsync(int? id = null, string? name = null)
+    {
+        var identifier = GetIdentifier(id, name);
+        if(identifier is null)
+            return null;
+        bool? isFullyInitialized = IsFullyInitialized(_pokedexes, id, name);
+        var data = (isFullyInitialized == true) ? _pokedexes.FirstOrDefault(x => x.id == id) : null;
+        if (data is null)
+        {
+            data = await GetDataAsync<Pokedex>($"{BaseUrl}pokedex/{identifier}");
+            if (data.name is not null)
+            {
+                //data.version_group = await GetVersionGroupAsync(name: data.version_group.name);
+
+                if (isFullyInitialized == false)
+                    _pokedexes.FirstOrDefault(x => x.id is null && x.name == data.name)?.FullInitialization(data);
+                else
+                    _pokedexes.Add(data);
             }
         }
         return data;

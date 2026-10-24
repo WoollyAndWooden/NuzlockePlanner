@@ -1,0 +1,15 @@
+
+
+<div class="pokedex-container">                                                                                                                                                                                   
+    <div class="grid-container">
+        @if (_pokedex is not null)
+        {
+            @for (int i = 1; i <= _pokedex.pokemon_entries.Count; i++)
+            {
+                <div class="number-container">
+                    <div class="number">@i</div>
+                </div>
+            }
+        }
+    </div>                                                                                                                                                                                                         
+</div>                                                                                                                                                                                                             

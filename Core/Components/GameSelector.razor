@@ -24,12 +24,12 @@
             <button
                 type="button"
                 disabled="@LockVersionGroups"
-                class="game-selector-button@(_selectedVersionGroup?.id == versionGroup.id ? " active" : "")"
+                class="game-selector-button@(_gameSelectionState.SelectedVersionGroup?.id == versionGroup.id ? " active" : "")"
                 @onclick="() => _selectVersionGroup(versionGroup?.id ?? 0)">
                 @versionGroup.GetName()
             </button>
         }
-        @if (_selectedVersionGroup is not null)
+        @if (_gameSelectionState.SelectedVersionGroup is not null)
         {
             <button type="button" disabled="@LockGame" class="lockButton" @onclick="() => LockVersionGroups = !LockVersionGroups ">
                 Lock Selection
@@ -45,12 +45,12 @@
             <button
                 type="button"
                 disabled="@_lockGame"
-                class="game-selector-button@(_selectedGame?.id == game.id ? " active" : "")"
+                class="game-selector-button@(_gameSelectionState.SelectedGame?.id == game.id ? " active" : "")"
                 @onclick="() => _selectGame(game?.id ?? 0)">
                 @game.GetName()
             </button>
         }
-        @if (_selectedGame is not null)
+        @if (_gameSelectionState.SelectedGame is not null)
         {
             <button type="button" class="lockButton" @onclick="() => LockGame = !LockGame ">
                 Lock Selection
