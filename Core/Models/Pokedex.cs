@@ -14,7 +14,7 @@ public class Pokedex : NameIdResource
             is_main_series = full.is_main_series;
             pokemon_entries = full.pokemon_entries;
             region = full.region;
-            version_groups = full.version_groups;
+            //version_groups = full.version_groups;
         }
     }
 }

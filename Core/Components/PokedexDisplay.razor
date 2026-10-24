@@ -1,0 +1,16 @@
+@using Core.Services
+
+
+<div class="pokedex-container">                                                                                                                                                                                   
+    <div class="grid-container">
+        @if (_pokedex is not null)
+        {
+            @foreach (var pokemon in _pokedex.pokemon_entries)
+            {
+                <div class="number-container">
+                    <img src="@_spriteState.GetSprite(pokemon.pokemon_species.name)"/>
+                </div>
+            }
+        }
+    </div>                                                                                                                                                                                                         
+</div>                                                                                                                                                                                                             
