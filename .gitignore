@@ -66,3 +66,6 @@ nunit-*.xml
 .DS_Store
 Thumbs.db
 .aider*
+
+# Local dev sprites
+/Web/wwwroot/sprites/
