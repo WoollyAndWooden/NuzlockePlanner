@@ -44,6 +44,7 @@ jobs:
       - name: Build and Publish
         run: |
           dotnet build Web/Web.csproj -c Release --no-restore
+          cp -r sprites wwwroot/
           dotnet publish Web/Web.csproj -c Release --no-restore -o release /p:GHPages=true --nologo
           cd release/wwwroot
           mkdir -p _framework
