@@ -12,6 +12,8 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.11" />
+      <PackageReference Include="StrawberryShake" Version="16.8.0-p.7" />
+      <PackageReference Include="StrawberryShake.Transport.Http" Version="16.8.0-p.7" />
     </ItemGroup>
 
     <ItemGroup>
