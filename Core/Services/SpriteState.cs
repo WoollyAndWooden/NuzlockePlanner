@@ -17,8 +17,7 @@ public class SpriteState
         (string pokemonName, string main, string icon) = spritesForVersionGroup.FirstOrDefault(x => x.name == name);
         if (isMain)
             return main ?? OnErrorSprite;
-        else
-            return icon ?? OnErrorSprite;
+        return icon ?? OnErrorSprite;
     }
     
     public async Task LoadSpriteData(
