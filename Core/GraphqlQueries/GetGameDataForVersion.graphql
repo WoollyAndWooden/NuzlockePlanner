@@ -1,0 +1,177 @@
+query GetGameDataForVersion(
+    $versionGroupName: String!,
+    $versionName: String!,
+    $generationName: String!) {
+    encountersData: locationarea(
+        where: {
+            location: {
+                region:  {
+                    versiongroupregions:  {
+                        versiongroup:  {
+                            name: {_eq: $versionGroupName}
+                        }
+                    }
+                }
+            }
+        }
+    ) {
+        id
+        name
+        encounters(
+            where: {
+                version: {
+                    name: {
+                        _eq: $versionName
+                    }
+                }
+            }
+        ){
+            id
+            max_level
+            min_level
+            version{
+                id
+                name
+            }
+            pokemon{
+                id
+                name
+            }
+            encounterslot{
+                id
+                rarity
+                slot
+                encountermethod{
+                    id
+                    name
+                    order
+                }
+            }
+        }
+        location{
+            id
+            name
+        }
+    }
+
+    # Get pokedex and region details
+    regionData: versiongroupregion(
+        where: {
+            versiongroup:  {
+                name: {
+                    _eq: $versionGroupName
+                }
+            }
+        }){
+        id
+        region{
+            id
+            name
+            pokedexes(
+                where: {
+                    pokedexversiongroups:  {
+                        versiongroup:  {
+                            name:  {
+                                _eq: $versionGroupName
+                            }
+                        }
+                    }
+                }
+            ){
+                id
+                name
+                pokemondexnumbers{
+                    id
+                    pokemonspecy{
+                        id
+                        name
+                        pokemons(
+                            where:  {
+                                is_default:  {
+                                    _eq: true
+                                }
+                            }
+                        ){
+                            id
+                            name
+                            order
+                            pokemonabilities(where:  {
+                                is_hidden:  {
+                                    _eq: false
+                                }
+                            }){
+                                id
+                                slot
+                                ability{
+                                    id
+                                    name
+                                }
+                            }
+                            pokemonabilitypasts(where:  {
+                                is_hidden:  {
+                                    _eq: false
+                                }
+                            }){
+                                id
+                                slot
+                                ability{
+                                    id
+                                    name
+                                }
+                            }
+                            pokemonstats{
+                                id
+                                base_stat
+                                stat{
+                                    id
+                                    name
+                                }
+                            }
+                            pokemonstatpasts(
+                                where: {
+                                    generation: {
+                                        name: {
+                                            _eq: $generationName
+                                        }
+                                    }
+                                }
+                            ){
+                                id
+                                base_stat
+                                effort
+                                stat{
+                                    id
+                                    name
+                                }
+                            }
+                            pokemontypes{
+                                id
+                                slot
+                                type{
+                                    id
+                                    name
+                                }
+                            }
+                            pokemontypepasts(
+                                where: {
+                                    generation: {
+                                        name: {
+                                            _eq: $generationName
+                                        }
+                                    }
+                                }
+                            ){
+                                id
+                                slot
+                                type{
+                                    id
+                                    name
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

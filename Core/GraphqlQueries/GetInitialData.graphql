@@ -1,0 +1,26 @@
+query GetInitialData {
+    generations: generation {
+        id
+        name
+        versiongroups {
+            id
+            name
+            generation {
+                id
+                name
+            }
+            versions {
+                id
+                name
+                versiongroup {
+                    id
+                    name
+                    generation {
+                        id
+                        name
+                    }
+                }
+            }
+        }
+    }
+}
