@@ -63,82 +63,23 @@ public class PokeApi
     
     public async Task<Generation?> GetGenerationAsync(int? id = null, string? name = null)
     {
-        var identifier = GetIdentifier(id, name);
-        if (identifier is null)
-            return null;
-        bool? isFullyInitialized = IsFullyInitialized(_generations, id, name);
-        var data = (isFullyInitialized == true) ? _generations.FirstOrDefault(x => x.id == id) : null;
-        if (data is null)
-        {
-            data = await GetDataAsync<Generation>($"{BaseUrl}generation/{identifier}");
-            if (isFullyInitialized == false)
-                _generations.FirstOrDefault(x => x.id is null && x.name == data.name)?.FullInitialization(data);
-            else if (data is not null)
-            {
-                _generations.Add(data);
-                foreach(var versionGroup in data.version_groups)
-                    CacheIfNotInCache(_versionGroups, versionGroup);
-            }
-        }
-        return data;
+        return _generations.FirstOrDefault(x => x.id == id || x.name == name);
     }
     
     // VERSIONGROUPSECTION
     public async Task<VersionGroup?> GetVersionGroupAsync(int? id = null, string? name = null)
     {
-        var identifier = GetIdentifier(id, name);
-        if(identifier is null)
-            return null;
-        bool? isFullyInitialized = IsFullyInitialized(_versionGroups, id, name);
-        var data = (isFullyInitialized == true) ? _versionGroups.FirstOrDefault(x => x.id == id) : null;
-        if (data is null)
-        {
-            data = await GetDataAsync<VersionGroup>($"{BaseUrl}version-group/{identifier}");
-            if (data.name is not null)
-            {
-                data.generation = await GetGenerationAsync(name: data.generation.name ?? "");
-                if (isFullyInitialized == false)
-                    _versionGroups.FirstOrDefault(x => x.id is null && x.name == data.name)?.FullInitialization(data);
-                else
-                    _versionGroups.Add(data);
-                foreach(var version in data.versions)
-                    CacheIfNotInCache(_games, version);
-                foreach(var region in data.regions)
-                    CacheIfNotInCache(_regions, region);
-                foreach(var pokedex in data.pokedexes)
-                    CacheIfNotInCache(_pokedexes, pokedex);
-                
-            }
-        }
-        return data;
+        return _versionGroups.FirstOrDefault(x => x.id == id || x.name == name);
     }
     
     // GAME VERSION SECTION
     public async Task<Game?> GetGameAsync(int? id = null, string? name = null)
     {
-        var identifier = GetIdentifier(id, name);
-        if(identifier is null)
-            return null;
-        bool? isFullyInitialized = IsFullyInitialized(_games, id, name);
-        var data = (isFullyInitialized == true) ? _games.FirstOrDefault(x => x.id == id) : null;;
-        if (data is null)
-        {
-            data = await GetDataAsync<Game>($"{BaseUrl}version/{identifier}");
-            if (data.name is not null)
-            {
-                data.version_group = await GetVersionGroupAsync(name: data.version_group.name);
-
-                if (isFullyInitialized == false)
-                    _games.FirstOrDefault(x => x.id is null && x.name == data.name)?.FullInitialization(data);
-                else
-                    _games.Add(data);
-            }
-        }
-        return data;
+        return _games.FirstOrDefault(x => x.id == id || x.name == name);
     }
     
     // POKEDEX SECTION
-    public async Task<Pokedex?> GetPokedexAsync(int? id = null, string? name = null)
+    /*public async Task<Pokedex?> GetPokedexAsync(int? id = null, string? name = null)
     {
         var identifier = GetIdentifier(id, name);
         if(identifier is null)
@@ -229,32 +170,14 @@ public class PokeApi
             }
         }
         return data;
-    }
+    }*/
     
     public async Task<Specie?> GetSpecieAsync(int? id = null, string? name = null)
     {
-        var identifier = GetIdentifier(id, name);
-        if(identifier is null)
-            return null;
-        bool? isFullyInitialized = IsFullyInitialized(_pokemonSpecies, id, name);
-        var data = (isFullyInitialized == true) ? _pokemonSpecies.FirstOrDefault(x => x.id == id) : null;
-        if (data is null)
-        {
-            data = await GetDataAsync<Specie>($"{BaseUrl}pokemon-species/{identifier}");
-            if (data.name is not null)
-            {
-                //data.version_group = await GetVersionGroupAsync(name: data.version_group.name);
-
-                if (isFullyInitialized == false)
-                    _pokemonSpecies.FirstOrDefault(x => x.id is null && x.name == data.name)?.FullInitialization(data);
-                else
-                    _pokemonSpecies.Add(data);
-            }
-        }
-        return data;
+        return _pokemonSpecies.FirstOrDefault(x => x.id == id || x.name == name);
     }
 
-    public async Task<Ability?> GetAbilityAsync(int id)
+    /*public async Task<Ability?> GetAbilityAsync(int id)
     {
         var data = _pokemonAbilities.FirstOrDefault(x => x.id == id);
         if (data is null)
@@ -321,7 +244,7 @@ public class PokeApi
             }
         }
         return data;
-    }
+    }*/
 
     private bool? IsFullyInitialized<T>(List<T> listToCheck, int? id, string? name) where T : NameIdResource
     {

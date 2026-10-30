@@ -1,7 +1,5 @@
-using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using PokeApiClientNS;
-using PokeApiClientNS.State;
 
 namespace Core.Models;
 
