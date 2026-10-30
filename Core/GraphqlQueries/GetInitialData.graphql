@@ -5,21 +5,9 @@ query GetInitialData {
         pokemon_v2_versiongroups {
             id
             name
-            pokemon_v2_generation {
-                id
-                name
-            }
             pokemon_v2_versions {
                 id
                 name
-                pokemon_v2_versiongroup {
-                    id
-                    name
-                    pokemon_v2_generation {
-                        id
-                        name
-                    }
-                }
             }
         }
     }

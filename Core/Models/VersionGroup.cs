@@ -1,3 +1,5 @@
+using PokeApiClientNS;
+
 namespace Core.Models;
 
 public class VersionGroup : NameIdResource
@@ -7,6 +9,16 @@ public class VersionGroup : NameIdResource
     public List<Region> regions { get; set; } = [];
     public List<Pokedex> pokedexes { get; set; } = [];
     public Generation generation { get; set; }
+
+    public VersionGroup(IGetInitialData_Generations_Pokemon_v2_versiongroups versiongroup)
+    {
+        id = versiongroup.Id;
+        name = versiongroup.Name;
+        foreach (var version in versiongroup.Pokemon_v2_versions )
+        {
+            versions.Add(new Game(version));
+        }
+    }
 
     public override void FullInitialization(NameIdResource data)
     {

@@ -42,11 +42,14 @@ public class PokeApi
 
         foreach (var generation in result.Data.Generations)
         {
-            _generations.Add(new Generation
+            var tempGen = new Generation(generation);
+            _generations.Add(tempGen);
+            foreach (var versiongroup in tempGen.version_groups)
             {
-                id = generation.Id,
-                name = generation.Name,
-            });
+                _versionGroups.Add(versiongroup);
+                foreach (var version in versiongroup.versions)
+                    _games.Add(version);
+            }
         }
     }
     
@@ -57,6 +60,7 @@ public class PokeApi
 
         return _generations;
     }
+    
     public async Task<Generation?> GetGenerationAsync(int? id = null, string? name = null)
     {
         var identifier = GetIdentifier(id, name);
