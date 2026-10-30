@@ -1,6 +1,8 @@
 using System.Text.Json;
 using Core.Models;
 using Core.Models.Dto;
+using PokeApiClientNS;
+using PokeApiClientNS.State;
 
 namespace Core.Services;
 
@@ -9,7 +11,6 @@ public class PokeApi
     private const string BaseUrl = "https://pokeapi.co/api/v2/";
 
     private readonly List<Generation> _generations = [];
-    private int _generationCount;
     private readonly List<VersionGroup> _versionGroups = [];
     private readonly List<Game> _games = [];
     private readonly List<Pokedex> _pokedexes = [];
@@ -26,22 +27,34 @@ public class PokeApi
     private readonly List<Stat> _pokemonStats = [];
     
     private readonly HttpClient _httpClient;
-    public PokeApi(HttpClient httpClient)
+    private readonly PokeApiClient _client;
+    
+    public PokeApi(PokeApiClient client)
     {
-        this._httpClient = httpClient;
+        _client = client;
+    }
+
+    public async Task GetInitialDataAsync()
+    {
+        var result = await _client.GetInitialData.ExecuteAsync();
+        if (result.Data?.Generations is null)
+            return;
+
+        foreach (var generation in result.Data.Generations)
+        {
+            _generations.Add(new Generation
+            {
+                id = generation.Id,
+                name = generation.Name,
+            });
+        }
     }
     
     // GENERATION SECTION
     public async Task<List<Generation>> GetAllGenerationsAsync()
     {
-        _generationCount = (_generationCount == 0) ? await _getGenerationCountAsync() : _generationCount;
-        if (_generations.Count() < _generationCount)
-        {
-            for (int i = 1; i <= _generationCount; i++)
-            {
-                await GetGenerationAsync(i);
-            }
-        }
+        await GetInitialDataAsync();
+
         return _generations;
     }
     public async Task<Generation?> GetGenerationAsync(int? id = null, string? name = null)
@@ -64,13 +77,6 @@ public class PokeApi
             }
         }
         return data;
-    }
-    private async Task<int> _getGenerationCountAsync()
-    {
-        if (_generationCount != 0)
-            return _generationCount;
-        var generations = await GetDataAsync<PokeApiListCountDto<Generation>>($"{BaseUrl}generation?limit=1");
-        return generations?.count ?? 0;
     }
     
     // VERSIONGROUPSECTION

@@ -2,12 +2,12 @@ query GetGameDataForVersion(
     $versionGroupName: String!,
     $versionName: String!,
     $generationName: String!) {
-    encountersData: locationarea(
+    encountersData: pokemon_v2_locationarea(
         where: {
-            location: {
-                region:  {
-                    versiongroupregions:  {
-                        versiongroup:  {
+            pokemon_v2_location: {
+                pokemon_v2_region:  {
+                    pokemon_v2_versiongroupregions:  {
+                        pokemon_v2_versiongroup:  {
                             name: {_eq: $versionGroupName}
                         }
                     }
@@ -17,9 +17,9 @@ query GetGameDataForVersion(
     ) {
         id
         name
-        encounters(
+        pokemon_v2_encounters(
             where: {
-                version: {
+                pokemon_v2_version: {
                     name: {
                         _eq: $versionName
                     }
@@ -29,48 +29,48 @@ query GetGameDataForVersion(
             id
             max_level
             min_level
-            version{
+            pokemon_v2_version{
                 id
                 name
             }
-            pokemon{
+            pokemon_v2_pokemon{
                 id
                 name
             }
-            encounterslot{
+            pokemon_v2_encounterslot{
                 id
                 rarity
                 slot
-                encountermethod{
+                pokemon_v2_encountermethod{
                     id
                     name
                     order
                 }
             }
         }
-        location{
+        pokemon_v2_location{
             id
             name
         }
     }
 
     # Get pokedex and region details
-    regionData: versiongroupregion(
+    regionData: pokemon_v2_versiongroupregion(
         where: {
-            versiongroup:  {
+            pokemon_v2_versiongroup:  {
                 name: {
                     _eq: $versionGroupName
                 }
             }
         }){
         id
-        region{
+        pokemon_v2_region{
             id
             name
-            pokedexes(
+            pokemon_v2_pokedexes(
                 where: {
-                    pokedexversiongroups:  {
-                        versiongroup:  {
+                    pokemon_v2_pokedexversiongroups:  {
+                        pokemon_v2_versiongroup:  {
                             name:  {
                                 _eq: $versionGroupName
                             }
@@ -80,12 +80,12 @@ query GetGameDataForVersion(
             ){
                 id
                 name
-                pokemondexnumbers{
+                pokemon_v2_pokemondexnumbers{
                     id
-                    pokemonspecy{
+                    pokemon_v2_pokemonspecy{
                         id
                         name
-                        pokemons(
+                        pokemon_v2_pokemons(
                             where:  {
                                 is_default:  {
                                     _eq: true
@@ -95,41 +95,68 @@ query GetGameDataForVersion(
                             id
                             name
                             order
-                            pokemonabilities(where:  {
-                                is_hidden:  {
-                                    _eq: false
+                            pokemon_v2_pokemonabilities(
+                                where:  {
+                                    is_hidden:  {
+                                        _eq: false
                                 }
                             }){
                                 id
                                 slot
-                                ability{
+                                pokemon_v2_ability{
                                     id
                                     name
                                 }
                             }
-                            pokemonabilitypasts(where:  {
-                                is_hidden:  {
-                                    _eq: false
+                            pokemon_v2_pokemonabilitypasts(
+                                where:  {
+                                    is_hidden:  {
+                                        _eq: false
                                 }
                             }){
                                 id
                                 slot
-                                ability{
+                                pokemon_v2_ability{
                                     id
                                     name
                                 }
                             }
-                            pokemonstats{
+                            pokemon_v2_pokemonstats{
                                 id
                                 base_stat
-                                stat{
+                                pokemon_v2_stat{
                                     id
                                     name
                                 }
                             }
-                            pokemonstatpasts(
+                            #pokemon_v2_pokemonstatpasts(
+                            #    where: {
+                            #        pokemon_v2_generation: {
+                            #            name: {
+                            #                _eq: $generationName
+                            #            }
+                            #        }
+                            #    }
+                            #){
+                            #    id
+                            #    base_stat
+                            #    effort
+                            #    stat{
+                            #        id
+                            #        name
+                            #    }
+                            #}
+                            pokemon_v2_pokemontypes{
+                                id
+                                slot
+                                pokemon_v2_type{
+                                    id
+                                    name
+                                }
+                            }
+                            pokemon_v2_pokemontypepasts(
                                 where: {
-                                    generation: {
+                                    pokemon_v2_generation: {
                                         name: {
                                             _eq: $generationName
                                         }
@@ -137,33 +164,8 @@ query GetGameDataForVersion(
                                 }
                             ){
                                 id
-                                base_stat
-                                effort
-                                stat{
-                                    id
-                                    name
-                                }
-                            }
-                            pokemontypes{
-                                id
                                 slot
-                                type{
-                                    id
-                                    name
-                                }
-                            }
-                            pokemontypepasts(
-                                where: {
-                                    generation: {
-                                        name: {
-                                            _eq: $generationName
-                                        }
-                                    }
-                                }
-                            ){
-                                id
-                                slot
-                                type{
+                                pokemon_v2_type{
                                     id
                                     name
                                 }

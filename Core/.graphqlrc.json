@@ -1,6 +1,6 @@
 {
   "schema": "schema.graphql",
-  "documents": "GraphqlQueries/*.graphql",
+  "documents": "GraphqlQueries/**/*.graphql",
   "extensions": {
     "strawberryShake": {
       "name": "PokeApiClient",
@@ -11,8 +11,9 @@
       },
       "transportProfiles": [
         {
-          "default": "Http",
-          "subscription": "WebSocket"
+          "name": "Default",
+          "transport": "Http",
+          "method": "Post"
         }
       ]
     }

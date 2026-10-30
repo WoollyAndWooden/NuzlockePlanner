@@ -1,21 +1,21 @@
 query GetInitialData {
-    generations: generation {
+    generations: pokemon_v2_generation {
         id
         name
-        versiongroups {
+        pokemon_v2_versiongroups {
             id
             name
-            generation {
+            pokemon_v2_generation {
                 id
                 name
             }
-            versions {
+            pokemon_v2_versions {
                 id
                 name
-                versiongroup {
+                pokemon_v2_versiongroup {
                     id
                     name
-                    generation {
+                    pokemon_v2_generation {
                         id
                         name
                     }

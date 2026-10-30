@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using PokeApiClientNS.State;
 
 namespace Core.Models;
 
@@ -15,7 +16,6 @@ public class Generation : NameIdResource
             version_groups = full.version_groups;
         }
     }
-
     public override string GetName()
     {
         string temp = Regex.Replace(name.Replace('-', ' '), @"\b\w", m => m.Value.ToUpper());
