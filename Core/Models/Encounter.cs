@@ -1,12 +1,29 @@
+using PokeApiClientNS;
+
 namespace Core.Models;
 
 public class Encounter
 {
-    public uint encounterIdId { get; set; }
-    public EncounterMethod encounterMethod { get; set; }
+    public int id { get; set; }
+    public EncounterSlot encounterSlot { get; set; }
     public Specie pokemonSpecie { get; set; }
-    public uint minLevel { get; set; }
-    public uint maxLevel { get; set; }
-    public uint encounterRate { get; set; }
-    public string? condition { get; set; }
+    public int minLevel { get; set; }
+    public int maxLevel { get; set; }
+    public int rarity { get; set; }
+
+    public Encounter(IGetGameDataForVersion_EncountersData_Pokemon_v2_encounters encounter)
+    {
+        id = encounter.Id;
+        minLevel = encounter.Min_level;
+        maxLevel = encounter.Max_level;
+        rarity = rarity;
+        if(encounter.Pokemon_v2_encounterslot is not null)
+            encounterSlot = new EncounterSlot(encounter.Pokemon_v2_encounterslot);
+        
+        pokemonSpecie = new Specie
+        {
+            id = encounter.Pokemon_v2_pokemon.Id,
+            name = encounter.Pokemon_v2_pokemon.Name
+        };
+    }
 }

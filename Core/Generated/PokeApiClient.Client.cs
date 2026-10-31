@@ -1040,13 +1040,18 @@ namespace PokeApiClientNS
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
     public partial class GetGameDataForVersion_RegionData_pokemon_v2_versiongroupregion : global::System.IEquatable<GetGameDataForVersion_RegionData_pokemon_v2_versiongroupregion>, IGetGameDataForVersion_RegionData_pokemon_v2_versiongroupregion
     {
-        public GetGameDataForVersion_RegionData_pokemon_v2_versiongroupregion(global::System.Int32 id, global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region? pokemon_V2_Region)
+        public GetGameDataForVersion_RegionData_pokemon_v2_versiongroupregion(global::System.Int32 id, global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup? pokemon_V2_Versiongroup, global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region? pokemon_V2_Region)
         {
             Id = id;
+            Pokemon_v2_versiongroup = pokemon_V2_Versiongroup;
             Pokemon_v2_region = pokemon_V2_Region;
         }
 
         public global::System.Int32 Id { get; }
+        /// <summary>
+        /// An object relationship
+        /// </summary>
+        public global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup? Pokemon_v2_versiongroup { get; }
         /// <summary>
         /// An object relationship
         /// </summary>
@@ -1069,7 +1074,7 @@ namespace PokeApiClientNS
                 return false;
             }
 
-            return (global::System.Object.Equals(Id, other.Id)) && ((Pokemon_v2_region is null && other.Pokemon_v2_region is null) || Pokemon_v2_region != null && Pokemon_v2_region.Equals(other.Pokemon_v2_region));
+            return (global::System.Object.Equals(Id, other.Id)) && ((Pokemon_v2_versiongroup is null && other.Pokemon_v2_versiongroup is null) || Pokemon_v2_versiongroup != null && Pokemon_v2_versiongroup.Equals(other.Pokemon_v2_versiongroup)) && ((Pokemon_v2_region is null && other.Pokemon_v2_region is null) || Pokemon_v2_region != null && Pokemon_v2_region.Equals(other.Pokemon_v2_region));
         }
 
         public override global::System.Boolean Equals(global::System.Object? obj)
@@ -1098,6 +1103,11 @@ namespace PokeApiClientNS
             {
                 int hash = 5;
                 hash ^= 397 * Id.GetHashCode();
+                if (Pokemon_v2_versiongroup != null)
+                {
+                    hash ^= 397 * Pokemon_v2_versiongroup.GetHashCode();
+                }
+
                 if (Pokemon_v2_region != null)
                 {
                     hash ^= 397 * Pokemon_v2_region.GetHashCode();
@@ -1271,6 +1281,71 @@ namespace PokeApiClientNS
             {
                 int hash = 5;
                 hash ^= 397 * Id.GetHashCode();
+                hash ^= 397 * Name.GetHashCode();
+                return hash;
+            }
+        }
+    }
+
+    // StrawberryShake.CodeGeneration.CSharp.Generators.ResultTypeGenerator
+    /// <summary>
+    /// columns and relationships of "pokemon_v2_versiongroup"
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
+    public partial class GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup : global::System.IEquatable<GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup>, IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup
+    {
+        public GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup(global::System.String name)
+        {
+            Name = name;
+        }
+
+        public global::System.String Name { get; }
+
+        public virtual global::System.Boolean Equals(GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (Name.Equals(other.Name));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
                 hash ^= 397 * Name.GetHashCode();
                 return hash;
             }
@@ -2790,6 +2865,10 @@ namespace PokeApiClientNS
         /// <summary>
         /// An object relationship
         /// </summary>
+        public global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup? Pokemon_v2_versiongroup { get; }
+        /// <summary>
+        /// An object relationship
+        /// </summary>
         public global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region? Pokemon_v2_region { get; }
     }
 
@@ -2852,6 +2931,25 @@ namespace PokeApiClientNS
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
     public partial interface IGetGameDataForVersion_EncountersData_Pokemon_v2_location_pokemon_v2_location : IGetGameDataForVersion_EncountersData_Pokemon_v2_location
+    {
+    }
+
+    // StrawberryShake.CodeGeneration.CSharp.Generators.ResultInterfaceGenerator
+    /// <summary>
+    /// columns and relationships of "pokemon_v2_versiongroup"
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
+    public partial interface IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup
+    {
+        public global::System.String Name { get; }
+    }
+
+    // StrawberryShake.CodeGeneration.CSharp.Generators.ResultInterfaceGenerator
+    /// <summary>
+    /// columns and relationships of "pokemon_v2_versiongroup"
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
+    public partial interface IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup : IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup
     {
     }
 
@@ -3582,6 +3680,10 @@ namespace PokeApiClientNS
     ///   ) {
     ///     __typename
     ///     id
+    ///     pokemon_v2_versiongroup {
+    ///       __typename
+    ///       name
+    ///     }
     ///     pokemon_v2_region {
     ///       __typename
     ///       id
@@ -3682,8 +3784,8 @@ namespace PokeApiClientNS
 
         public static GetGameDataForVersionQueryDocument Instance { get; } = new GetGameDataForVersionQueryDocument();
         public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Query;
-        public global::System.ReadOnlySpan<global::System.Byte> Body => "query GetGameDataForVersion($versionGroupName: String!, $versionName: String!, $generationName: String!) { encountersData: pokemon_v2_locationarea(where: { pokemon_v2_location: { pokemon_v2_region: { pokemon_v2_versiongroupregions: { pokemon_v2_versiongroup: { name: { _eq: $versionGroupName } } } } } }) { __typename id name pokemon_v2_encounters(where: { pokemon_v2_version: { name: { _eq: $versionName } } }) { __typename id max_level min_level pokemon_v2_version { __typename id name } pokemon_v2_pokemon { __typename id name } pokemon_v2_encounterslot { __typename id rarity slot pokemon_v2_encountermethod { __typename id name order } } } pokemon_v2_location { __typename id name } } regionData: pokemon_v2_versiongroupregion(where: { pokemon_v2_versiongroup: { name: { _eq: $versionGroupName } } }) { __typename id pokemon_v2_region { __typename id name pokemon_v2_pokedexes(where: { pokemon_v2_pokedexversiongroups: { pokemon_v2_versiongroup: { name: { _eq: $versionGroupName } } } }) { __typename id name pokemon_v2_pokemondexnumbers { __typename id pokemon_v2_pokemonspecy { __typename id name pokemon_v2_pokemons(where: { is_default: { _eq: true } }) { __typename id name order pokemon_v2_pokemonabilities(where: { is_hidden: { _eq: false } }) { __typename id slot pokemon_v2_ability { __typename id name } } pokemon_v2_pokemonabilitypasts(where: { is_hidden: { _eq: false } }) { __typename id slot pokemon_v2_ability { __typename id name } } pokemon_v2_pokemonstats { __typename id base_stat pokemon_v2_stat { __typename id name } } pokemon_v2_pokemontypes { __typename id slot pokemon_v2_type { __typename id name } } pokemon_v2_pokemontypepasts(where: { pokemon_v2_generation: { name: { _eq: $generationName } } }) { __typename id slot pokemon_v2_type { __typename id name } } } } } } } } }"u8;
-        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "24077fb991ecbf32e23da31a574a58d6");
+        public global::System.ReadOnlySpan<global::System.Byte> Body => "query GetGameDataForVersion($versionGroupName: String!, $versionName: String!, $generationName: String!) { encountersData: pokemon_v2_locationarea(where: { pokemon_v2_location: { pokemon_v2_region: { pokemon_v2_versiongroupregions: { pokemon_v2_versiongroup: { name: { _eq: $versionGroupName } } } } } }) { __typename id name pokemon_v2_encounters(where: { pokemon_v2_version: { name: { _eq: $versionName } } }) { __typename id max_level min_level pokemon_v2_version { __typename id name } pokemon_v2_pokemon { __typename id name } pokemon_v2_encounterslot { __typename id rarity slot pokemon_v2_encountermethod { __typename id name order } } } pokemon_v2_location { __typename id name } } regionData: pokemon_v2_versiongroupregion(where: { pokemon_v2_versiongroup: { name: { _eq: $versionGroupName } } }) { __typename id pokemon_v2_versiongroup { __typename name } pokemon_v2_region { __typename id name pokemon_v2_pokedexes(where: { pokemon_v2_pokedexversiongroups: { pokemon_v2_versiongroup: { name: { _eq: $versionGroupName } } } }) { __typename id name pokemon_v2_pokemondexnumbers { __typename id pokemon_v2_pokemonspecy { __typename id name pokemon_v2_pokemons(where: { is_default: { _eq: true } }) { __typename id name order pokemon_v2_pokemonabilities(where: { is_hidden: { _eq: false } }) { __typename id slot pokemon_v2_ability { __typename id name } } pokemon_v2_pokemonabilitypasts(where: { is_hidden: { _eq: false } }) { __typename id slot pokemon_v2_ability { __typename id name } } pokemon_v2_pokemonstats { __typename id base_stat pokemon_v2_stat { __typename id name } } pokemon_v2_pokemontypes { __typename id slot pokemon_v2_type { __typename id name } } pokemon_v2_pokemontypepasts(where: { pokemon_v2_generation: { name: { _eq: $generationName } } }) { __typename id slot pokemon_v2_type { __typename id name } } } } } } } } }"u8;
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "065d8a89381a96a66d6be76f611f0033");
 
         public override global::System.String ToString()
         {
@@ -3759,6 +3861,10 @@ namespace PokeApiClientNS
     ///   ) {
     ///     __typename
     ///     id
+    ///     pokemon_v2_versiongroup {
+    ///       __typename
+    ///       name
+    ///     }
     ///     pokemon_v2_region {
     ///       __typename
     ///       id
@@ -4017,6 +4123,10 @@ namespace PokeApiClientNS
     ///   ) {
     ///     __typename
     ///     id
+    ///     pokemon_v2_versiongroup {
+    ///       __typename
+    ///       name
+    ///     }
     ///     pokemon_v2_region {
     ///       __typename
     ///       id
@@ -4601,7 +4711,27 @@ namespace PokeApiClientNS.State
             IGetGameDataForVersion_RegionData returnValue = default !;
             if (data.__typename.Equals("pokemon_v2_versiongroupregion", global::System.StringComparison.Ordinal))
             {
-                returnValue = new GetGameDataForVersion_RegionData_pokemon_v2_versiongroupregion(data.Id ?? throw new global::System.ArgumentNullException(), MapIGetGameDataForVersion_RegionData_Pokemon_v2_region(data.Pokemon_v2_region, snapshot));
+                returnValue = new GetGameDataForVersion_RegionData_pokemon_v2_versiongroupregion(data.Id ?? throw new global::System.ArgumentNullException(), MapIGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup(data.Pokemon_v2_versiongroup, snapshot), MapIGetGameDataForVersion_RegionData_Pokemon_v2_region(data.Pokemon_v2_region, snapshot));
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup? MapIGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup(global::PokeApiClientNS.State.pokemon_v2_versiongroupData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup returnValue = default !;
+            if (data.__typename.Equals("pokemon_v2_versiongroup", global::System.StringComparison.Ordinal))
+            {
+                returnValue = new GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup(data.Name ?? throw new global::System.ArgumentNullException());
             }
             else
             {
@@ -5643,7 +5773,28 @@ namespace PokeApiClientNS.State
             var typename = obj.Value.GetProperty("__typename").GetString();
             if (typename?.Equals("pokemon_v2_versiongroupregion", global::System.StringComparison.Ordinal) ?? false)
             {
-                return new global::PokeApiClientNS.State.pokemon_v2_versiongroupregionData(typename, id: Deserialize_NonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), pokemon_V2_Region: Deserialize_IGetGameDataForVersion_RegionData_Pokemon_v2_region(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "pokemon_v2_region")));
+                return new global::PokeApiClientNS.State.pokemon_v2_versiongroupregionData(typename, id: Deserialize_NonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), pokemon_V2_Versiongroup: Deserialize_IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "pokemon_v2_versiongroup")), pokemon_V2_Region: Deserialize_IGetGameDataForVersion_RegionData_Pokemon_v2_region(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "pokemon_v2_region")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::PokeApiClientNS.State.pokemon_v2_versiongroupData? Deserialize_IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("pokemon_v2_versiongroup", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::PokeApiClientNS.State.pokemon_v2_versiongroupData(typename, name: Deserialize_NonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")));
             }
 
             throw new global::System.NotSupportedException();
@@ -6292,15 +6443,18 @@ namespace PokeApiClientNS.State
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "16.7.3.0")]
     public partial class pokemon_v2_versiongroupregionData
     {
-        public pokemon_v2_versiongroupregionData(global::System.String __typename, global::System.Int32? id = default !, global::PokeApiClientNS.State.pokemon_v2_regionData? pokemon_V2_Region = default !)
+        public pokemon_v2_versiongroupregionData(global::System.String __typename, global::System.Int32? id = default !, global::PokeApiClientNS.State.pokemon_v2_versiongroupData? pokemon_V2_Versiongroup = default !, global::PokeApiClientNS.State.pokemon_v2_regionData? pokemon_V2_Region = default !)
         {
             this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
             Id = id;
+            Pokemon_v2_versiongroup = pokemon_V2_Versiongroup;
             Pokemon_v2_region = pokemon_V2_Region;
         }
 
         public global::System.String __typename { get; }
         public global::System.Int32? Id { get; }
+        ///<summary>An object relationship</summary>
+        public global::PokeApiClientNS.State.pokemon_v2_versiongroupData? Pokemon_v2_versiongroup { get; }
         ///<summary>An object relationship</summary>
         public global::PokeApiClientNS.State.pokemon_v2_regionData? Pokemon_v2_region { get; }
     }

@@ -52,7 +52,7 @@
         }
         @if (_gameSelectionState.SelectedGame is not null)
         {
-            <button type="button" class="lockButton" @onclick="() => LockGame = !LockGame ">
+            <button type="button" class="lockButton" @onclick="() => LockGame = !LockGame " disabled="@_lockTheLock">
                 Lock Selection
             </button>
         }

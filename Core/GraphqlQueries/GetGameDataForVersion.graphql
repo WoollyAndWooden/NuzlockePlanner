@@ -64,6 +64,10 @@ query GetGameDataForVersion(
             }
         }){
         id
+        pokemon_v2_versiongroup {
+            id
+            name
+        }
         pokemon_v2_region{
             id
             name

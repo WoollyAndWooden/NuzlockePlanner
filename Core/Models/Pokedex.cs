@@ -16,6 +16,11 @@ public class Pokedex : NameIdResource
         aggregateCount = pokedex.Pokemon_v2_pokemondexnumbers_aggregate.Aggregate.Count;
 
     }
+    
+    public async Task Fill(IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes dex)
+    {
+        // TODO: Asynchronously fill up the pokedex. And for the love of God PLEASE go dor a run You fatass.
+    }
     public override void FullInitialization(NameIdResource data)
     {
         base.FullInitialization(data);
