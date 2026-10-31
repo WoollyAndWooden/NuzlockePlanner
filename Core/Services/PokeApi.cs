@@ -47,13 +47,16 @@ public class PokeApi
             foreach (var versiongroup in tempGen.version_groups)
             {
                 _versionGroups.Add(versiongroup);
+                foreach(var pokedex in versiongroup.pokedexes)
+                    _pokedexes.Add(pokedex);
                 foreach (var version in versiongroup.versions)
                     _games.Add(version);
             }
         }
     }
     
-    // GENERATION SECTION
+    //public async Task GetGameDataForVersion
+    
     public async Task<List<Generation>> GetAllGenerationsAsync()
     {
         await GetInitialDataAsync();
@@ -66,40 +69,20 @@ public class PokeApi
         return _generations.FirstOrDefault(x => x.id == id || x.name == name);
     }
     
-    // VERSIONGROUPSECTION
     public async Task<VersionGroup?> GetVersionGroupAsync(int? id = null, string? name = null)
     {
         return _versionGroups.FirstOrDefault(x => x.id == id || x.name == name);
     }
-    
-    // GAME VERSION SECTION
+
     public async Task<Game?> GetGameAsync(int? id = null, string? name = null)
     {
         return _games.FirstOrDefault(x => x.id == id || x.name == name);
     }
     
     // POKEDEX SECTION
-    /*public async Task<Pokedex?> GetPokedexAsync(int? id = null, string? name = null)
+    public async Task<Pokedex?> GetPokedexAsync(int? id = null, string? name = null)
     {
-        var identifier = GetIdentifier(id, name);
-        if(identifier is null)
-            return null;
-        bool? isFullyInitialized = IsFullyInitialized(_pokedexes, id, name);
-        var data = (isFullyInitialized == true) ? _pokedexes.FirstOrDefault(x => x.id == id) : null;
-        if (data is null)
-        {
-            data = await GetDataAsync<Pokedex>($"{BaseUrl}pokedex/{identifier}");
-            if (data.name is not null)
-            {
-                //data.version_group = await GetVersionGroupAsync(name: data.version_group.name);
-
-                if (isFullyInitialized == false)
-                    _pokedexes.FirstOrDefault(x => x.id is null && x.name == data.name)?.FullInitialization(data);
-                else
-                    _pokedexes.Add(data);
-            }
-        }
-        return data;
+        return _pokedexes.FirstOrDefault(x => x.id == id || x.name == name);
     }
 
     public async Task<Region?> GetRegionAsync(int id)
@@ -170,14 +153,14 @@ public class PokeApi
             }
         }
         return data;
-    }*/
+    }
     
     public async Task<Specie?> GetSpecieAsync(int? id = null, string? name = null)
     {
         return _pokemonSpecies.FirstOrDefault(x => x.id == id || x.name == name);
     }
 
-    /*public async Task<Ability?> GetAbilityAsync(int id)
+    public async Task<Ability?> GetAbilityAsync(int id)
     {
         var data = _pokemonAbilities.FirstOrDefault(x => x.id == id);
         if (data is null)
@@ -244,7 +227,7 @@ public class PokeApi
             }
         }
         return data;
-    }*/
+    }
 
     private bool? IsFullyInitialized<T>(List<T> listToCheck, int? id, string? name) where T : NameIdResource
     {

@@ -12,7 +12,7 @@ public class SpriteState
     public List<(string name, string urlMain, string urlParty)> spritesForVersionGroup = [];
     public string OnErrorSprite = "sprites/pokemon/0.png";
 
-    public string GetSprite(string name, bool isMain = true)
+    public string GetSprite(string? name, bool isMain = true)
     {
         (string pokemonName, string main, string icon) = spritesForVersionGroup.FirstOrDefault(x => x.name == name);
         if (isMain)

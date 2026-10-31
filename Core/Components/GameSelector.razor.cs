@@ -80,7 +80,13 @@ public partial class GameSelector
             if (gameToAdd is not null)
                 _games.Add(gameToAdd);
         }
-        _displayGames = _games.Count > 0;
+        _displayGames = _games.Count > 1;
+
+        if (_games.Count == 1)
+        {
+            await _selectGame(_games.First().id ?? 0);
+        }
+        
     }
 
     private void _clearVersionGroups()
