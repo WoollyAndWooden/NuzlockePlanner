@@ -64,7 +64,7 @@ public partial class GameSelector
         _clearGame();
         foreach (var versionGroup in _selectedGeneration?.version_groups!)
         {
-            var versionGroupToAdd = _pokeApi.GetVersionGroup(null, versionGroup.name);
+            var versionGroupToAdd = _pokeApi.GetVersionGroup(null, versionGroup.Name);
             if (versionGroupToAdd is not null)
                 _versionGroupsForGeneration.Add(versionGroupToAdd);
         }
@@ -77,7 +77,7 @@ public partial class GameSelector
         _clearGame();
         foreach (var games in _gameSelectionState.SelectedVersionGroup?.versions!)
         {
-            var gameToAdd = _pokeApi.GetGame(name: games.name);
+            var gameToAdd = _pokeApi.GetGame(name: games.Name);
             if (gameToAdd is not null)
                 _games.Add(gameToAdd);
         }
@@ -85,7 +85,7 @@ public partial class GameSelector
 
         if (_games.Count == 1)
         {
-            await _selectGame(_games.First().id ?? 0);
+            await _selectGame(_games.First().Id ?? 0);
         }
         
     }
@@ -103,7 +103,7 @@ public partial class GameSelector
         _gameSelectionState.SelectedGame = _gameSelectionState.SelectedGame;
         LockGame = true;
         _lockTheLock = true;
-        await _pokeApi.GetGameDataForVersion(_selectedGeneration.name, _gameSelectionState.SelectedVersionGroup.name, _gameSelectionState.SelectedGame.name);
+        await _pokeApi.GetGameDataForVersion(_selectedGeneration.Name, _gameSelectionState.SelectedVersionGroup.Name, _gameSelectionState.SelectedGame.Name);
         _lockTheLock = false;
         if(_games.Count == 1)
             LockGame = false;

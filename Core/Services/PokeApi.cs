@@ -49,10 +49,15 @@ public class PokeApi(PokeApiClient client)
         var EncounterTasks = encounterData.Select(async item => await _processEncounters(item)).ToList();
         
         var regionData = result.Data.RegionData;
-        var RegionTasks = regionData.Select(async item => await _processRegions(item)).ToList();
-
-        await Task.WhenAll(EncounterTasks.Concat(RegionTasks));
-
+        var RegionTasks = regionData.Select(async item =>await _processRegions(item)).ToList();
+        
+        await Task.WhenAll(RegionTasks);
+        foreach (var specie in _pokedexes.SelectMany(dex => dex.pokemon_entries?.Where(x =>
+                     _pokemonSpecies.All(y => y.Name != x.pokemon_species?.Name))))
+        {
+            _pokemonSpecies.Add(specie.pokemon_species);
+        }
+        await Task.WhenAll(EncounterTasks);
     }
 
     private async Task _processEncounters(IGetGameDataForVersion_EncountersData data)
@@ -60,12 +65,11 @@ public class PokeApi(PokeApiClient client)
         if(GetLocationAsync(data.Pokemon_v2_location.Id, data.Pokemon_v2_location.Name) is null)
             _locations.Add(new Location
             {
-                id = data.Pokemon_v2_location.Id, 
-                name = data.Pokemon_v2_location.Name
+                Id = data.Pokemon_v2_location.Id, 
+                Name = data.Pokemon_v2_location.Name
             });
         if (GetLocationArea(data.Id, data.Name) is null)
             _locationAreas.Add(new Area(data));
-
     }
     
     private async Task _processRegions(IGetGameDataForVersion_RegionData data)
@@ -76,6 +80,8 @@ public class PokeApi(PokeApiClient client)
             var dexToFill = GetPokedex(regionDex.Id, regionDex.Name);
             await dexToFill.Fill(regionDex);
             WIPRegion.pokedexes.Add(dexToFill);
+            foreach (var pokedex in WIPRegion.pokedexes)
+                _pokedexes.Add(pokedex);
         }
     }
     
@@ -89,28 +95,28 @@ public class PokeApi(PokeApiClient client)
     
     public Generation? GetGeneration(int? id = null, string? name = null)
     {
-        return _generations.FirstOrDefault(x => x.id == id || x.name == name);
+        return _generations.FirstOrDefault(x => x.Id == id || x.Name == name);
     }
     
     public VersionGroup? GetVersionGroup(int? id = null, string? name = null)
     {
-        return _versionGroups.FirstOrDefault(x => x.id == id || x.name == name);
+        return _versionGroups.FirstOrDefault(x => x.Id == id || x.Name == name);
     }
 
     public Game? GetGame(int? id = null, string? name = null)
     {
-        return _games.FirstOrDefault(x => x.id == id || x.name == name);
+        return _games.FirstOrDefault(x => x.Id == id || x.Name == name);
     }
     
     // POKEDEX SECTION
     public Pokedex? GetPokedex(int? id = null, string? name = null)
     {
-        return _pokedexes.FirstOrDefault(x => x.id == id || x.name == name);
+        return _pokedexes.FirstOrDefault(x => x.Id == id || x.Name == name);
     }
 
     public async Task<Region?> GetRegionAsync(int id)
     {
-        var data = _regions.FirstOrDefault(x => x.id == id);
+        var data = _regions.FirstOrDefault(x => x.Id == id);
         if (data is null)
         {
             //data = await GetDataAsync<Region>($"{BaseUrl}region/{id}");
@@ -124,11 +130,11 @@ public class PokeApi(PokeApiClient client)
 
     public async Task<Location?> GetLocationAsync(int? id = null, string? name = null)
     {
-        return _locations.FirstOrDefault(x => x.id == id || x.name == name);
+        return _locations.FirstOrDefault(x => x.Id == id || x.Name == name);
     }
     public Area? GetLocationArea(int? id = null, string? name = null)
     {
-        return _locationAreas.FirstOrDefault(x => x.id == id || x.name == name);
+        return _locationAreas.FirstOrDefault(x => x.Id == id || x.Name == name);
     }
 
     /*public async Task<Area?> GetAreaAsync(int id)
@@ -161,7 +167,7 @@ public class PokeApi(PokeApiClient client)
     
     public async Task<EncounterMethod?> GetEncounterMethodAsync(int id)
     {
-        var data = _encounterMethods.FirstOrDefault(x => x.id == id);
+        var data = _encounterMethods.FirstOrDefault(x => x.Id == id);
         if (data is null)
         {
             //data = await GetDataAsync<EncounterMethod>($"{BaseUrl}encounter-method/{id}");
@@ -175,12 +181,12 @@ public class PokeApi(PokeApiClient client)
     
     public async Task<Specie?> GetSpecieAsync(int? id = null, string? name = null)
     {
-        return _pokemonSpecies.FirstOrDefault(x => x.id == id || x.name == name);
+        return _pokemonSpecies.FirstOrDefault(x => x.Id == id || x.Name == name);
     }
 
     public async Task<Ability?> GetAbilityAsync(int id)
     {
-        var data = _pokemonAbilities.FirstOrDefault(x => x.id == id);
+        var data = _pokemonAbilities.FirstOrDefault(x => x.Id == id);
         if (data is null)
         {
             //data = await GetDataAsync<Ability>($"{BaseUrl}ability/{id}");
@@ -207,7 +213,7 @@ public class PokeApi(PokeApiClient client)
 
     public async Task<PokemonType?> GetPokemonTypeAsync(int id)
     {
-        var data = _pokemonTypes.FirstOrDefault(x => x.typeId == id);
+        var data = _pokemonTypes.FirstOrDefault(x => x.Id == id);
         if (data is null)
         {
             //data = await GetDataAsync<PokemonType>($"{BaseUrl}type/{id}");
@@ -221,7 +227,7 @@ public class PokeApi(PokeApiClient client)
 
     public async Task<EvolutionLine?> GetEvolutionLineAsync(int id)
     {
-        var data = _pokemonEvolutionLines.FirstOrDefault(x => x.evolutionLineId == id);
+        var data = _pokemonEvolutionLines.FirstOrDefault(x => x.Id == id);
         if (data is null)
         {
             //data = await GetDataAsync<EvolutionLine>($"{BaseUrl}evolution-chain/{id}");
@@ -235,7 +241,7 @@ public class PokeApi(PokeApiClient client)
 
     public async Task<Stat?> GetStatAsync(int id)
     {
-        var data = _pokemonStats.FirstOrDefault(x => x.StatId == id);
+        var data = _pokemonStats.FirstOrDefault(x => x.Id == id);
         if (data is null)
         {
             //data = await GetDataAsync<Stat>($"{BaseUrl}stat/{id}");
@@ -249,16 +255,16 @@ public class PokeApi(PokeApiClient client)
 
     private bool? IsFullyInitialized<T>(List<T> listToCheck, int? id, string? name) where T : NameIdResource
     {
-        if (id is not null && listToCheck.Any(x => x.id == id))
+        if (id is not null && listToCheck.Any(x => x.Id == id))
             return true;
-        if (name is not null && listToCheck.Any(x => x.name == name))
+        if (name is not null && listToCheck.Any(x => x.Name == name))
             return false;
         return null;
     }
 
     private void CacheIfNotInCache<T>(List<T> listToAdd, T data) where T : NameIdResource
     {
-        if(IsFullyInitialized(listToAdd, data.id, data.name) is null)
+        if(IsFullyInitialized(listToAdd, data.Id, data.Name) is null)
             listToAdd.Add(data);
     }
     

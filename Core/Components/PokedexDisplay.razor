@@ -7,9 +7,9 @@
         {
             @for(int i = 1; i < _pokedex.aggregateCount; i++)
             {
-                var pokemon = _pokedex.pokemon_entries?.FirstOrDefault(x => x.pokemon_species?.id == i);
+                var pokemon = _pokedex.pokemon_entries?.FirstOrDefault(x => x.pokemon_species?.Id == i);
                 <div class="number-container">
-                    <img src="@_spriteState.GetSprite(pokemon?.pokemon_species?.name)"/>
+                    <img src="@_spriteState.GetSprite(pokemon?.pokemon_species?.Name)"/>
                 </div>
             }
         }

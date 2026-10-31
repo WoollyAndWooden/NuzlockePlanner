@@ -10,8 +10,8 @@ public class EncounterMethod : NameIdResource
         IGetGameDataForVersion_EncountersData_Pokemon_v2_encounters_Pokemon_v2_encounterslot_Pokemon_v2_encountermethod
             encounterMethod)
     {
-        id = encounterMethod.Id;
-        name = encounterMethod.Name;
+        Id = encounterMethod.Id;
+        Name = encounterMethod.Name;
         order = encounterMethod.Order;
     }
 }

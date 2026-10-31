@@ -20,10 +20,6 @@ public class Encounter
         if(encounter.Pokemon_v2_encounterslot is not null)
             encounterSlot = new EncounterSlot(encounter.Pokemon_v2_encounterslot);
         
-        pokemonSpecie = new Specie
-        {
-            id = encounter.Pokemon_v2_pokemon.Id,
-            name = encounter.Pokemon_v2_pokemon.Name
-        };
+        pokemonSpecie = new Specie(id: encounter.Pokemon_v2_pokemon.Id, name: encounter.Pokemon_v2_pokemon.Name);
     }
 }

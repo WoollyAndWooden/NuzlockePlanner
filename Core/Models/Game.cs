@@ -8,7 +8,7 @@ public class Game : NameIdResource
     
     public Game(IGetInitialData_Generations_Pokemon_v2_versiongroups_Pokemon_v2_versions version)
     {
-        id = version.Id;
-        name = version.Name;
+        Id = version.Id;
+        Name = version.Name;
     }
 }

@@ -1294,11 +1294,13 @@ namespace PokeApiClientNS
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
     public partial class GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup : global::System.IEquatable<GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup>, IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup
     {
-        public GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup(global::System.String name)
+        public GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup(global::System.Int32 id, global::System.String name)
         {
+            Id = id;
             Name = name;
         }
 
+        public global::System.Int32 Id { get; }
         public global::System.String Name { get; }
 
         public virtual global::System.Boolean Equals(GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup? other)
@@ -1318,7 +1320,7 @@ namespace PokeApiClientNS
                 return false;
             }
 
-            return (Name.Equals(other.Name));
+            return (global::System.Object.Equals(Id, other.Id)) && Name.Equals(other.Name);
         }
 
         public override global::System.Boolean Equals(global::System.Object? obj)
@@ -1346,6 +1348,7 @@ namespace PokeApiClientNS
             unchecked
             {
                 int hash = 5;
+                hash ^= 397 * Id.GetHashCode();
                 hash ^= 397 * Name.GetHashCode();
                 return hash;
             }
@@ -1886,15 +1889,34 @@ namespace PokeApiClientNS
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
     public partial class GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_pokemon_v2_pokemonspecies : global::System.IEquatable<GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_pokemon_v2_pokemonspecies>, IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_pokemon_v2_pokemonspecies
     {
-        public GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_pokemon_v2_pokemonspecies(global::System.Int32 id, global::System.String name, global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_pokemons> pokemon_V2_Pokemons)
+        public GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_pokemon_v2_pokemonspecies(global::System.Int32 id, global::System.String name, global::System.Boolean is_Baby, global::System.Boolean is_Legendary, global::System.Boolean is_Mythical, global::System.Int32? gender_Rate, global::System.Int32? capture_Rate, global::System.Int32? base_Happiness, global::System.Int32? evolves_From_Species_Id, global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain? pokemon_V2_Evolutionchain, global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_pokemons> pokemon_V2_Pokemons)
         {
             Id = id;
             Name = name;
+            Is_baby = is_Baby;
+            Is_legendary = is_Legendary;
+            Is_mythical = is_Mythical;
+            Gender_rate = gender_Rate;
+            Capture_rate = capture_Rate;
+            Base_happiness = base_Happiness;
+            Evolves_from_species_id = evolves_From_Species_Id;
+            Pokemon_v2_evolutionchain = pokemon_V2_Evolutionchain;
             Pokemon_v2_pokemons = pokemon_V2_Pokemons;
         }
 
         public global::System.Int32 Id { get; }
         public global::System.String Name { get; }
+        public global::System.Boolean Is_baby { get; }
+        public global::System.Boolean Is_legendary { get; }
+        public global::System.Boolean Is_mythical { get; }
+        public global::System.Int32? Gender_rate { get; }
+        public global::System.Int32? Capture_rate { get; }
+        public global::System.Int32? Base_happiness { get; }
+        public global::System.Int32? Evolves_from_species_id { get; }
+        /// <summary>
+        /// An object relationship
+        /// </summary>
+        public global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain? Pokemon_v2_evolutionchain { get; }
         /// <summary>
         /// An array relationship
         /// </summary>
@@ -1917,7 +1939,7 @@ namespace PokeApiClientNS
                 return false;
             }
 
-            return (global::System.Object.Equals(Id, other.Id)) && Name.Equals(other.Name) && global::StrawberryShake.Internal.ComparisonHelper.SequenceEqual(Pokemon_v2_pokemons, other.Pokemon_v2_pokemons);
+            return (global::System.Object.Equals(Id, other.Id)) && Name.Equals(other.Name) && global::System.Object.Equals(Is_baby, other.Is_baby) && global::System.Object.Equals(Is_legendary, other.Is_legendary) && global::System.Object.Equals(Is_mythical, other.Is_mythical) && global::System.Object.Equals(Gender_rate, other.Gender_rate) && global::System.Object.Equals(Capture_rate, other.Capture_rate) && global::System.Object.Equals(Base_happiness, other.Base_happiness) && global::System.Object.Equals(Evolves_from_species_id, other.Evolves_from_species_id) && ((Pokemon_v2_evolutionchain is null && other.Pokemon_v2_evolutionchain is null) || Pokemon_v2_evolutionchain != null && Pokemon_v2_evolutionchain.Equals(other.Pokemon_v2_evolutionchain)) && global::StrawberryShake.Internal.ComparisonHelper.SequenceEqual(Pokemon_v2_pokemons, other.Pokemon_v2_pokemons);
         }
 
         public override global::System.Boolean Equals(global::System.Object? obj)
@@ -1947,9 +1969,112 @@ namespace PokeApiClientNS
                 int hash = 5;
                 hash ^= 397 * Id.GetHashCode();
                 hash ^= 397 * Name.GetHashCode();
+                hash ^= 397 * Is_baby.GetHashCode();
+                hash ^= 397 * Is_legendary.GetHashCode();
+                hash ^= 397 * Is_mythical.GetHashCode();
+                if (Gender_rate != null)
+                {
+                    hash ^= 397 * Gender_rate.GetHashCode();
+                }
+
+                if (Capture_rate != null)
+                {
+                    hash ^= 397 * Capture_rate.GetHashCode();
+                }
+
+                if (Base_happiness != null)
+                {
+                    hash ^= 397 * Base_happiness.GetHashCode();
+                }
+
+                if (Evolves_from_species_id != null)
+                {
+                    hash ^= 397 * Evolves_from_species_id.GetHashCode();
+                }
+
+                if (Pokemon_v2_evolutionchain != null)
+                {
+                    hash ^= 397 * Pokemon_v2_evolutionchain.GetHashCode();
+                }
+
                 foreach (var Pokemon_v2_pokemons_elm in Pokemon_v2_pokemons)
                 {
                     hash ^= 397 * Pokemon_v2_pokemons_elm.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    // StrawberryShake.CodeGeneration.CSharp.Generators.ResultTypeGenerator
+    /// <summary>
+    /// columns and relationships of "pokemon_v2_evolutionchain"
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
+    public partial class GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_pokemon_v2_evolutionchain : global::System.IEquatable<GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_pokemon_v2_evolutionchain>, IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_pokemon_v2_evolutionchain
+    {
+        public GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_pokemon_v2_evolutionchain(global::System.Int32 id, global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies> pokemon_V2_Pokemonspecies)
+        {
+            Id = id;
+            Pokemon_v2_pokemonspecies = pokemon_V2_Pokemonspecies;
+        }
+
+        public global::System.Int32 Id { get; }
+        /// <summary>
+        /// An array relationship
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies> Pokemon_v2_pokemonspecies { get; }
+
+        public virtual global::System.Boolean Equals(GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_pokemon_v2_evolutionchain? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (global::System.Object.Equals(Id, other.Id)) && global::StrawberryShake.Internal.ComparisonHelper.SequenceEqual(Pokemon_v2_pokemonspecies, other.Pokemon_v2_pokemonspecies);
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_pokemon_v2_evolutionchain)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * Id.GetHashCode();
+                foreach (var Pokemon_v2_pokemonspecies_elm in Pokemon_v2_pokemonspecies)
+                {
+                    hash ^= 397 * Pokemon_v2_pokemonspecies_elm.GetHashCode();
                 }
 
                 return hash;
@@ -2077,6 +2202,74 @@ namespace PokeApiClientNS
                     hash ^= 397 * Pokemon_v2_pokemontypepasts_elm.GetHashCode();
                 }
 
+                return hash;
+            }
+        }
+    }
+
+    // StrawberryShake.CodeGeneration.CSharp.Generators.ResultTypeGenerator
+    /// <summary>
+    /// columns and relationships of "pokemon_v2_pokemonspecies"
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
+    public partial class GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies_pokemon_v2_pokemonspecies : global::System.IEquatable<GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies_pokemon_v2_pokemonspecies>, IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies_pokemon_v2_pokemonspecies
+    {
+        public GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies_pokemon_v2_pokemonspecies(global::System.Int32 id, global::System.String name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        public global::System.Int32 Id { get; }
+        public global::System.String Name { get; }
+
+        public virtual global::System.Boolean Equals(GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies_pokemon_v2_pokemonspecies? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (global::System.Object.Equals(Id, other.Id)) && Name.Equals(other.Name);
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies_pokemon_v2_pokemonspecies)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * Id.GetHashCode();
+                hash ^= 397 * Name.GetHashCode();
                 return hash;
             }
         }
@@ -2941,6 +3134,7 @@ namespace PokeApiClientNS
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
     public partial interface IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup
     {
+        public global::System.Int32 Id { get; }
         public global::System.String Name { get; }
     }
 
@@ -3119,6 +3313,17 @@ namespace PokeApiClientNS
     {
         public global::System.Int32 Id { get; }
         public global::System.String Name { get; }
+        public global::System.Boolean Is_baby { get; }
+        public global::System.Boolean Is_legendary { get; }
+        public global::System.Boolean Is_mythical { get; }
+        public global::System.Int32? Gender_rate { get; }
+        public global::System.Int32? Capture_rate { get; }
+        public global::System.Int32? Base_happiness { get; }
+        public global::System.Int32? Evolves_from_species_id { get; }
+        /// <summary>
+        /// An object relationship
+        /// </summary>
+        public global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain? Pokemon_v2_evolutionchain { get; }
         /// <summary>
         /// An array relationship
         /// </summary>
@@ -3131,6 +3336,29 @@ namespace PokeApiClientNS
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
     public partial interface IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_pokemon_v2_pokemonspecies : IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy
+    {
+    }
+
+    // StrawberryShake.CodeGeneration.CSharp.Generators.ResultInterfaceGenerator
+    /// <summary>
+    /// columns and relationships of "pokemon_v2_evolutionchain"
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
+    public partial interface IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain
+    {
+        public global::System.Int32 Id { get; }
+        /// <summary>
+        /// An array relationship
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies> Pokemon_v2_pokemonspecies { get; }
+    }
+
+    // StrawberryShake.CodeGeneration.CSharp.Generators.ResultInterfaceGenerator
+    /// <summary>
+    /// columns and relationships of "pokemon_v2_evolutionchain"
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
+    public partial interface IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_pokemon_v2_evolutionchain : IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain
     {
     }
 
@@ -3172,6 +3400,26 @@ namespace PokeApiClientNS
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
     public partial interface IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_pokemons_pokemon_v2_pokemon : IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_pokemons
+    {
+    }
+
+    // StrawberryShake.CodeGeneration.CSharp.Generators.ResultInterfaceGenerator
+    /// <summary>
+    /// columns and relationships of "pokemon_v2_pokemonspecies"
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
+    public partial interface IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies
+    {
+        public global::System.Int32 Id { get; }
+        public global::System.String Name { get; }
+    }
+
+    // StrawberryShake.CodeGeneration.CSharp.Generators.ResultInterfaceGenerator
+    /// <summary>
+    /// columns and relationships of "pokemon_v2_pokemonspecies"
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "11.0.0")]
+    public partial interface IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies_pokemon_v2_pokemonspecies : IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies
     {
     }
 
@@ -3621,9 +3869,9 @@ namespace PokeApiClientNS
     /// Represents the operation service of the GetGameDataForVersion GraphQL operation
     /// <code>
     /// query GetGameDataForVersion(
+    ///   $generationName: String!
     ///   $versionGroupName: String!
     ///   $versionName: String!
-    ///   $generationName: String!
     /// ) {
     ///   encountersData: pokemon_v2_locationarea(
     ///     where: {
@@ -3682,6 +3930,7 @@ namespace PokeApiClientNS
     ///     id
     ///     pokemon_v2_versiongroup {
     ///       __typename
+    ///       id
     ///       name
     ///     }
     ///     pokemon_v2_region {
@@ -3705,6 +3954,22 @@ namespace PokeApiClientNS
     ///             __typename
     ///             id
     ///             name
+    ///             is_baby
+    ///             is_legendary
+    ///             is_mythical
+    ///             gender_rate
+    ///             capture_rate
+    ///             base_happiness
+    ///             evolves_from_species_id
+    ///             pokemon_v2_evolutionchain {
+    ///               __typename
+    ///               id
+    ///               pokemon_v2_pokemonspecies {
+    ///                 __typename
+    ///                 id
+    ///                 name
+    ///               }
+    ///             }
     ///             pokemon_v2_pokemons(where: { is_default: { _eq: true } }) {
     ///               __typename
     ///               id
@@ -3721,7 +3986,12 @@ namespace PokeApiClientNS
     ///                 }
     ///               }
     ///               pokemon_v2_pokemonabilitypasts(
-    ///                 where: { is_hidden: { _eq: false } }
+    ///                 where: {
+    ///                   is_hidden: { _eq: false }
+    ///                   _and: {
+    ///                     pokemon_v2_generation: { name: { _eq: $generationName } }
+    ///                   }
+    ///                 }
     ///               ) {
     ///                 __typename
     ///                 id
@@ -3784,8 +4054,8 @@ namespace PokeApiClientNS
 
         public static GetGameDataForVersionQueryDocument Instance { get; } = new GetGameDataForVersionQueryDocument();
         public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Query;
-        public global::System.ReadOnlySpan<global::System.Byte> Body => "query GetGameDataForVersion($versionGroupName: String!, $versionName: String!, $generationName: String!) { encountersData: pokemon_v2_locationarea(where: { pokemon_v2_location: { pokemon_v2_region: { pokemon_v2_versiongroupregions: { pokemon_v2_versiongroup: { name: { _eq: $versionGroupName } } } } } }) { __typename id name pokemon_v2_encounters(where: { pokemon_v2_version: { name: { _eq: $versionName } } }) { __typename id max_level min_level pokemon_v2_version { __typename id name } pokemon_v2_pokemon { __typename id name } pokemon_v2_encounterslot { __typename id rarity slot pokemon_v2_encountermethod { __typename id name order } } } pokemon_v2_location { __typename id name } } regionData: pokemon_v2_versiongroupregion(where: { pokemon_v2_versiongroup: { name: { _eq: $versionGroupName } } }) { __typename id pokemon_v2_versiongroup { __typename name } pokemon_v2_region { __typename id name pokemon_v2_pokedexes(where: { pokemon_v2_pokedexversiongroups: { pokemon_v2_versiongroup: { name: { _eq: $versionGroupName } } } }) { __typename id name pokemon_v2_pokemondexnumbers { __typename id pokemon_v2_pokemonspecy { __typename id name pokemon_v2_pokemons(where: { is_default: { _eq: true } }) { __typename id name order pokemon_v2_pokemonabilities(where: { is_hidden: { _eq: false } }) { __typename id slot pokemon_v2_ability { __typename id name } } pokemon_v2_pokemonabilitypasts(where: { is_hidden: { _eq: false } }) { __typename id slot pokemon_v2_ability { __typename id name } } pokemon_v2_pokemonstats { __typename id base_stat pokemon_v2_stat { __typename id name } } pokemon_v2_pokemontypes { __typename id slot pokemon_v2_type { __typename id name } } pokemon_v2_pokemontypepasts(where: { pokemon_v2_generation: { name: { _eq: $generationName } } }) { __typename id slot pokemon_v2_type { __typename id name } } } } } } } } }"u8;
-        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "065d8a89381a96a66d6be76f611f0033");
+        public global::System.ReadOnlySpan<global::System.Byte> Body => "query GetGameDataForVersion($generationName: String!, $versionGroupName: String!, $versionName: String!) { encountersData: pokemon_v2_locationarea(where: { pokemon_v2_location: { pokemon_v2_region: { pokemon_v2_versiongroupregions: { pokemon_v2_versiongroup: { name: { _eq: $versionGroupName } } } } } }) { __typename id name pokemon_v2_encounters(where: { pokemon_v2_version: { name: { _eq: $versionName } } }) { __typename id max_level min_level pokemon_v2_version { __typename id name } pokemon_v2_pokemon { __typename id name } pokemon_v2_encounterslot { __typename id rarity slot pokemon_v2_encountermethod { __typename id name order } } } pokemon_v2_location { __typename id name } } regionData: pokemon_v2_versiongroupregion(where: { pokemon_v2_versiongroup: { name: { _eq: $versionGroupName } } }) { __typename id pokemon_v2_versiongroup { __typename id name } pokemon_v2_region { __typename id name pokemon_v2_pokedexes(where: { pokemon_v2_pokedexversiongroups: { pokemon_v2_versiongroup: { name: { _eq: $versionGroupName } } } }) { __typename id name pokemon_v2_pokemondexnumbers { __typename id pokemon_v2_pokemonspecy { __typename id name is_baby is_legendary is_mythical gender_rate capture_rate base_happiness evolves_from_species_id pokemon_v2_evolutionchain { __typename id pokemon_v2_pokemonspecies { __typename id name } } pokemon_v2_pokemons(where: { is_default: { _eq: true } }) { __typename id name order pokemon_v2_pokemonabilities(where: { is_hidden: { _eq: false } }) { __typename id slot pokemon_v2_ability { __typename id name } } pokemon_v2_pokemonabilitypasts(where: { is_hidden: { _eq: false }, _and: { pokemon_v2_generation: { name: { _eq: $generationName } } } }) { __typename id slot pokemon_v2_ability { __typename id name } } pokemon_v2_pokemonstats { __typename id base_stat pokemon_v2_stat { __typename id name } } pokemon_v2_pokemontypes { __typename id slot pokemon_v2_type { __typename id name } } pokemon_v2_pokemontypepasts(where: { pokemon_v2_generation: { name: { _eq: $generationName } } }) { __typename id slot pokemon_v2_type { __typename id name } } } } } } } } }"u8;
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "a6f0f6d3d095ba83d176eaa2b5a54340");
 
         public override global::System.String ToString()
         {
@@ -3802,9 +4072,9 @@ namespace PokeApiClientNS
     /// Represents the operation service of the GetGameDataForVersion GraphQL operation
     /// <code>
     /// query GetGameDataForVersion(
+    ///   $generationName: String!
     ///   $versionGroupName: String!
     ///   $versionName: String!
-    ///   $generationName: String!
     /// ) {
     ///   encountersData: pokemon_v2_locationarea(
     ///     where: {
@@ -3863,6 +4133,7 @@ namespace PokeApiClientNS
     ///     id
     ///     pokemon_v2_versiongroup {
     ///       __typename
+    ///       id
     ///       name
     ///     }
     ///     pokemon_v2_region {
@@ -3886,6 +4157,22 @@ namespace PokeApiClientNS
     ///             __typename
     ///             id
     ///             name
+    ///             is_baby
+    ///             is_legendary
+    ///             is_mythical
+    ///             gender_rate
+    ///             capture_rate
+    ///             base_happiness
+    ///             evolves_from_species_id
+    ///             pokemon_v2_evolutionchain {
+    ///               __typename
+    ///               id
+    ///               pokemon_v2_pokemonspecies {
+    ///                 __typename
+    ///                 id
+    ///                 name
+    ///               }
+    ///             }
     ///             pokemon_v2_pokemons(where: { is_default: { _eq: true } }) {
     ///               __typename
     ///               id
@@ -3902,7 +4189,12 @@ namespace PokeApiClientNS
     ///                 }
     ///               }
     ///               pokemon_v2_pokemonabilitypasts(
-    ///                 where: { is_hidden: { _eq: false } }
+    ///                 where: {
+    ///                   is_hidden: { _eq: false }
+    ///                   _and: {
+    ///                     pokemon_v2_generation: { name: { _eq: $generationName } }
+    ///                   }
+    ///                 }
     ///               ) {
     ///                 __typename
     ///                 id
@@ -3992,9 +4284,9 @@ namespace PokeApiClientNS
             return With(r => r.ContextData["StrawberryShake.Transport.Http.HttpConnection.HttpClient"] = httpClient);
         }
 
-        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetGameDataForVersionResult>> ExecuteAsync(global::System.String versionGroupName, global::System.String versionName, global::System.String generationName, global::System.Threading.CancellationToken cancellationToken = default)
+        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetGameDataForVersionResult>> ExecuteAsync(global::System.String generationName, global::System.String versionGroupName, global::System.String versionName, global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var request = CreateRequest(versionGroupName, versionName, generationName);
+            var request = CreateRequest(generationName, versionGroupName, versionName);
             foreach (var configure in _configure)
             {
                 configure(request);
@@ -4003,24 +4295,34 @@ namespace PokeApiClientNS
             return await _operationExecutor.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
         }
 
-        public global::System.IObservable<global::StrawberryShake.IOperationResult<IGetGameDataForVersionResult>> Watch(global::System.String versionGroupName, global::System.String versionName, global::System.String generationName, global::StrawberryShake.ExecutionStrategy? strategy = null)
+        public global::System.IObservable<global::StrawberryShake.IOperationResult<IGetGameDataForVersionResult>> Watch(global::System.String generationName, global::System.String versionGroupName, global::System.String versionName, global::StrawberryShake.ExecutionStrategy? strategy = null)
         {
-            var request = CreateRequest(versionGroupName, versionName, generationName);
+            var request = CreateRequest(generationName, versionGroupName, versionName);
             return _operationExecutor.Watch(request, strategy);
         }
 
-        private global::StrawberryShake.OperationRequest CreateRequest(global::System.String versionGroupName, global::System.String versionName, global::System.String generationName)
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.String generationName, global::System.String versionGroupName, global::System.String versionName)
         {
             var variables = new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>();
+            variables.Add("generationName", FormatGenerationName(generationName));
             variables.Add("versionGroupName", FormatVersionGroupName(versionGroupName));
             variables.Add("versionName", FormatVersionName(versionName));
-            variables.Add("generationName", FormatGenerationName(generationName));
             return CreateRequest(variables);
         }
 
         private global::StrawberryShake.OperationRequest CreateRequest(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
         {
             return new global::StrawberryShake.OperationRequest(id: GetGameDataForVersionQueryDocument.Instance.Hash.Value, name: "GetGameDataForVersion", document: GetGameDataForVersionQueryDocument.Instance, strategy: global::StrawberryShake.RequestStrategy.Default, variables: variables);
+        }
+
+        private global::System.Object? FormatGenerationName(global::System.String value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _stringFormatter.Format(value);
         }
 
         private global::System.Object? FormatVersionGroupName(global::System.String value)
@@ -4043,16 +4345,6 @@ namespace PokeApiClientNS
             return _stringFormatter.Format(value);
         }
 
-        private global::System.Object? FormatGenerationName(global::System.String value)
-        {
-            if (value is null)
-            {
-                throw new global::System.ArgumentNullException(nameof(value));
-            }
-
-            return _stringFormatter.Format(value);
-        }
-
         global::StrawberryShake.OperationRequest global::StrawberryShake.IOperationRequestFactory.Create(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
         {
             return CreateRequest(variables!);
@@ -4064,9 +4356,9 @@ namespace PokeApiClientNS
     /// Represents the operation service of the GetGameDataForVersion GraphQL operation
     /// <code>
     /// query GetGameDataForVersion(
+    ///   $generationName: String!
     ///   $versionGroupName: String!
     ///   $versionName: String!
-    ///   $generationName: String!
     /// ) {
     ///   encountersData: pokemon_v2_locationarea(
     ///     where: {
@@ -4125,6 +4417,7 @@ namespace PokeApiClientNS
     ///     id
     ///     pokemon_v2_versiongroup {
     ///       __typename
+    ///       id
     ///       name
     ///     }
     ///     pokemon_v2_region {
@@ -4148,6 +4441,22 @@ namespace PokeApiClientNS
     ///             __typename
     ///             id
     ///             name
+    ///             is_baby
+    ///             is_legendary
+    ///             is_mythical
+    ///             gender_rate
+    ///             capture_rate
+    ///             base_happiness
+    ///             evolves_from_species_id
+    ///             pokemon_v2_evolutionchain {
+    ///               __typename
+    ///               id
+    ///               pokemon_v2_pokemonspecies {
+    ///                 __typename
+    ///                 id
+    ///                 name
+    ///               }
+    ///             }
     ///             pokemon_v2_pokemons(where: { is_default: { _eq: true } }) {
     ///               __typename
     ///               id
@@ -4164,7 +4473,12 @@ namespace PokeApiClientNS
     ///                 }
     ///               }
     ///               pokemon_v2_pokemonabilitypasts(
-    ///                 where: { is_hidden: { _eq: false } }
+    ///                 where: {
+    ///                   is_hidden: { _eq: false }
+    ///                   _and: {
+    ///                     pokemon_v2_generation: { name: { _eq: $generationName } }
+    ///                   }
+    ///                 }
     ///               ) {
     ///                 __typename
     ///                 id
@@ -4224,8 +4538,8 @@ namespace PokeApiClientNS
         global::PokeApiClientNS.IGetGameDataForVersionQuery With(global::System.Action<global::StrawberryShake.OperationRequest> configure);
         global::PokeApiClientNS.IGetGameDataForVersionQuery WithRequestUri(global::System.Uri requestUri);
         global::PokeApiClientNS.IGetGameDataForVersionQuery WithHttpClient(global::System.Net.Http.HttpClient httpClient);
-        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetGameDataForVersionResult>> ExecuteAsync(global::System.String versionGroupName, global::System.String versionName, global::System.String generationName, global::System.Threading.CancellationToken cancellationToken = default);
-        global::System.IObservable<global::StrawberryShake.IOperationResult<IGetGameDataForVersionResult>> Watch(global::System.String versionGroupName, global::System.String versionName, global::System.String generationName, global::StrawberryShake.ExecutionStrategy? strategy = null);
+        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetGameDataForVersionResult>> ExecuteAsync(global::System.String generationName, global::System.String versionGroupName, global::System.String versionName, global::System.Threading.CancellationToken cancellationToken = default);
+        global::System.IObservable<global::StrawberryShake.IOperationResult<IGetGameDataForVersionResult>> Watch(global::System.String generationName, global::System.String versionGroupName, global::System.String versionName, global::StrawberryShake.ExecutionStrategy? strategy = null);
     }
 
     // StrawberryShake.CodeGeneration.CSharp.Generators.ClientGenerator
@@ -4731,7 +5045,7 @@ namespace PokeApiClientNS.State
             IGetGameDataForVersion_RegionData_Pokemon_v2_versiongroup returnValue = default !;
             if (data.__typename.Equals("pokemon_v2_versiongroup", global::System.StringComparison.Ordinal))
             {
-                returnValue = new GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup(data.Name ?? throw new global::System.ArgumentNullException());
+                returnValue = new GetGameDataForVersion_RegionData_Pokemon_v2_versiongroup_pokemon_v2_versiongroup(data.Id ?? throw new global::System.ArgumentNullException(), data.Name ?? throw new global::System.ArgumentNullException());
             }
             else
             {
@@ -4833,7 +5147,58 @@ namespace PokeApiClientNS.State
             IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy returnValue = default !;
             if (data.__typename.Equals("pokemon_v2_pokemonspecies", global::System.StringComparison.Ordinal))
             {
-                returnValue = new GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_pokemon_v2_pokemonspecies(data.Id ?? throw new global::System.ArgumentNullException(), data.Name ?? throw new global::System.ArgumentNullException(), MapNonNullableIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_pokemonsNonNullableArray(data.Pokemon_v2_pokemons ?? throw new global::System.ArgumentNullException(), snapshot));
+                returnValue = new GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_pokemon_v2_pokemonspecies(data.Id ?? throw new global::System.ArgumentNullException(), data.Name ?? throw new global::System.ArgumentNullException(), data.Is_baby ?? throw new global::System.ArgumentNullException(), data.Is_legendary ?? throw new global::System.ArgumentNullException(), data.Is_mythical ?? throw new global::System.ArgumentNullException(), data.Gender_rate, data.Capture_rate, data.Base_happiness, data.Evolves_from_species_id, MapIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain(data.Pokemon_v2_evolutionchain, snapshot), MapNonNullableIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_pokemonsNonNullableArray(data.Pokemon_v2_pokemons ?? throw new global::System.ArgumentNullException(), snapshot));
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain? MapIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain(global::PokeApiClientNS.State.pokemon_v2_evolutionchainData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain returnValue = default !;
+            if (data.__typename.Equals("pokemon_v2_evolutionchain", global::System.StringComparison.Ordinal))
+            {
+                returnValue = new GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_pokemon_v2_evolutionchain(data.Id ?? throw new global::System.ArgumentNullException(), MapNonNullableIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspeciesNonNullableArray(data.Pokemon_v2_pokemonspecies ?? throw new global::System.ArgumentNullException(), snapshot));
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies> MapNonNullableIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspeciesNonNullableArray(global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.State.pokemon_v2_pokemonspeciesData>? list, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (list is null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            var pokemon_V2_Pokemonspeciess = new global::System.Collections.Generic.List<global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies>();
+            foreach (global::PokeApiClientNS.State.pokemon_v2_pokemonspeciesData child in list)
+            {
+                pokemon_V2_Pokemonspeciess.Add(MapNonNullableIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies(child, snapshot));
+            }
+
+            return pokemon_V2_Pokemonspeciess;
+        }
+
+        private global::PokeApiClientNS.IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies MapNonNullableIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies(global::PokeApiClientNS.State.pokemon_v2_pokemonspeciesData data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies returnValue = default !;
+            if (data.__typename.Equals("pokemon_v2_pokemonspecies", global::System.StringComparison.Ordinal))
+            {
+                returnValue = new GetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies_pokemon_v2_pokemonspecies(data.Id ?? throw new global::System.ArgumentNullException(), data.Name ?? throw new global::System.ArgumentNullException());
             }
             else
             {
@@ -5481,6 +5846,7 @@ namespace PokeApiClientNS.State
         private readonly global::StrawberryShake.IEntityIdSerializer _idSerializer;
         private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _stringParser;
         private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Int32, global::System.Int32> _intParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Boolean, global::System.Boolean> _booleanParser;
         public GetGameDataForVersionBuilder(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer idSerializer, global::StrawberryShake.IOperationResultDataFactory<global::PokeApiClientNS.IGetGameDataForVersionResult> resultDataFactory, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
         {
             _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
@@ -5488,6 +5854,7 @@ namespace PokeApiClientNS.State
             ResultDataFactory = resultDataFactory ?? throw new global::System.ArgumentNullException(nameof(resultDataFactory));
             _stringParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("String") ?? throw new global::System.ArgumentException("No serializer for type `String` found.");
             _intParser = serializerResolver.GetLeafValueParser<global::System.Int32, global::System.Int32>("Int") ?? throw new global::System.ArgumentException("No serializer for type `Int` found.");
+            _booleanParser = serializerResolver.GetLeafValueParser<global::System.Boolean, global::System.Boolean>("Boolean") ?? throw new global::System.ArgumentException("No serializer for type `Boolean` found.");
         }
 
         protected override global::StrawberryShake.IOperationResultDataFactory<global::PokeApiClientNS.IGetGameDataForVersionResult> ResultDataFactory { get; }
@@ -5794,7 +6161,7 @@ namespace PokeApiClientNS.State
             var typename = obj.Value.GetProperty("__typename").GetString();
             if (typename?.Equals("pokemon_v2_versiongroup", global::System.StringComparison.Ordinal) ?? false)
             {
-                return new global::PokeApiClientNS.State.pokemon_v2_versiongroupData(typename, name: Deserialize_NonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")));
+                return new global::PokeApiClientNS.State.pokemon_v2_versiongroupData(typename, id: Deserialize_NonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), name: Deserialize_NonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")));
             }
 
             throw new global::System.NotSupportedException();
@@ -5920,7 +6287,85 @@ namespace PokeApiClientNS.State
             var typename = obj.Value.GetProperty("__typename").GetString();
             if (typename?.Equals("pokemon_v2_pokemonspecies", global::System.StringComparison.Ordinal) ?? false)
             {
-                return new global::PokeApiClientNS.State.pokemon_v2_pokemonspeciesData(typename, id: Deserialize_NonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), name: Deserialize_NonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")), pokemon_V2_Pokemons: Deserialize_NonNullableIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_pokemonsNonNullableArray(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "pokemon_v2_pokemons")));
+                return new global::PokeApiClientNS.State.pokemon_v2_pokemonspeciesData(typename, id: Deserialize_NonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), name: Deserialize_NonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")), is_Baby: Deserialize_NonNullableBoolean(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "is_baby")), is_Legendary: Deserialize_NonNullableBoolean(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "is_legendary")), is_Mythical: Deserialize_NonNullableBoolean(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "is_mythical")), gender_Rate: Deserialize_Int32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "gender_rate")), capture_Rate: Deserialize_Int32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "capture_rate")), base_Happiness: Deserialize_Int32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "base_happiness")), evolves_From_Species_Id: Deserialize_Int32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "evolves_from_species_id")), pokemon_V2_Evolutionchain: Deserialize_IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "pokemon_v2_evolutionchain")), pokemon_V2_Pokemons: Deserialize_NonNullableIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_pokemonsNonNullableArray(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "pokemon_v2_pokemons")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.Boolean Deserialize_NonNullableBoolean(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _booleanParser.Parse(obj.Value.GetBoolean()!);
+        }
+
+        private global::PokeApiClientNS.State.pokemon_v2_evolutionchainData? Deserialize_IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("pokemon_v2_evolutionchain", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::PokeApiClientNS.State.pokemon_v2_evolutionchainData(typename, id: Deserialize_NonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), pokemon_V2_Pokemonspecies: Deserialize_NonNullableIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspeciesNonNullableArray(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "pokemon_v2_pokemonspecies")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.State.pokemon_v2_pokemonspeciesData> Deserialize_NonNullableIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspeciesNonNullableArray(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            var pokemon_V2_Pokemonspeciess = new global::System.Collections.Generic.List<global::PokeApiClientNS.State.pokemon_v2_pokemonspeciesData>();
+            foreach (global::System.Text.Json.JsonElement child in obj.Value.EnumerateArray())
+            {
+                pokemon_V2_Pokemonspeciess.Add(Deserialize_NonNullableIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies(child));
+            }
+
+            return pokemon_V2_Pokemonspeciess;
+        }
+
+        private global::PokeApiClientNS.State.pokemon_v2_pokemonspeciesData Deserialize_NonNullableIGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_evolutionchain_Pokemon_v2_pokemonspecies(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("pokemon_v2_pokemonspecies", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::PokeApiClientNS.State.pokemon_v2_pokemonspeciesData(typename, id: Deserialize_NonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), name: Deserialize_NonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")));
             }
 
             throw new global::System.NotSupportedException();
@@ -6622,19 +7067,54 @@ namespace PokeApiClientNS.State
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "16.7.3.0")]
     public partial class pokemon_v2_pokemonspeciesData
     {
-        public pokemon_v2_pokemonspeciesData(global::System.String __typename, global::System.Int32? id = default !, global::System.String? name = default !, global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.State.pokemon_v2_pokemonData>? pokemon_V2_Pokemons = default !)
+        public pokemon_v2_pokemonspeciesData(global::System.String __typename, global::System.Int32? id = default !, global::System.String? name = default !, global::System.Boolean? is_Baby = default !, global::System.Boolean? is_Legendary = default !, global::System.Boolean? is_Mythical = default !, global::System.Int32? gender_Rate = default !, global::System.Int32? capture_Rate = default !, global::System.Int32? base_Happiness = default !, global::System.Int32? evolves_From_Species_Id = default !, global::PokeApiClientNS.State.pokemon_v2_evolutionchainData? pokemon_V2_Evolutionchain = default !, global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.State.pokemon_v2_pokemonData>? pokemon_V2_Pokemons = default !)
         {
             this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
             Id = id;
             Name = name;
+            Is_baby = is_Baby;
+            Is_legendary = is_Legendary;
+            Is_mythical = is_Mythical;
+            Gender_rate = gender_Rate;
+            Capture_rate = capture_Rate;
+            Base_happiness = base_Happiness;
+            Evolves_from_species_id = evolves_From_Species_Id;
+            Pokemon_v2_evolutionchain = pokemon_V2_Evolutionchain;
             Pokemon_v2_pokemons = pokemon_V2_Pokemons;
         }
 
         public global::System.String __typename { get; }
         public global::System.Int32? Id { get; }
         public global::System.String? Name { get; }
+        public global::System.Boolean? Is_baby { get; }
+        public global::System.Boolean? Is_legendary { get; }
+        public global::System.Boolean? Is_mythical { get; }
+        public global::System.Int32? Gender_rate { get; }
+        public global::System.Int32? Capture_rate { get; }
+        public global::System.Int32? Base_happiness { get; }
+        public global::System.Int32? Evolves_from_species_id { get; }
+        ///<summary>An object relationship</summary>
+        public global::PokeApiClientNS.State.pokemon_v2_evolutionchainData? Pokemon_v2_evolutionchain { get; }
         ///<summary>An array relationship</summary>
         public global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.State.pokemon_v2_pokemonData>? Pokemon_v2_pokemons { get; }
+    }
+
+    // StrawberryShake.CodeGeneration.CSharp.Generators.DataTypeGenerator
+    ///<summary>columns and relationships of "pokemon_v2_evolutionchain"</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "16.7.3.0")]
+    public partial class pokemon_v2_evolutionchainData
+    {
+        public pokemon_v2_evolutionchainData(global::System.String __typename, global::System.Int32? id = default !, global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.State.pokemon_v2_pokemonspeciesData>? pokemon_V2_Pokemonspecies = default !)
+        {
+            this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
+            Id = id;
+            Pokemon_v2_pokemonspecies = pokemon_V2_Pokemonspecies;
+        }
+
+        public global::System.String __typename { get; }
+        public global::System.Int32? Id { get; }
+        ///<summary>An array relationship</summary>
+        public global::System.Collections.Generic.IReadOnlyList<global::PokeApiClientNS.State.pokemon_v2_pokemonspeciesData>? Pokemon_v2_pokemonspecies { get; }
     }
 
     // StrawberryShake.CodeGeneration.CSharp.Generators.DataTypeGenerator

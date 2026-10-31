@@ -19,10 +19,6 @@
         <ProjectReference Include="..\Core\Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="obj\" />
-    </ItemGroup>
-
     <Target Name="ConfigureForGitHubPages" AfterTargets="Publish" Condition="'$(GHPages)' == 'true'">
         <Message Text="Configuring for GitHub Pages (Base Tag + .nojekyll)..." Importance="high" />
         <Exec Command="sed -i 's|&lt;base href=&quot;/&quot; /&gt;|&lt;base href=&quot;/NuzlockePlanner/&quot; /&gt;|g' &quot;$(PublishDir)wwwroot/index.html&quot;" />

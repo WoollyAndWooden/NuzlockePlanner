@@ -1,7 +1,7 @@
 query GetGameDataForVersion(
+    $generationName: String!,
     $versionGroupName: String!,
-    $versionName: String!,
-    $generationName: String!) {
+    $versionName: String!) {
     encountersData: pokemon_v2_locationarea(
         where: {
             pokemon_v2_location: {
@@ -89,6 +89,20 @@ query GetGameDataForVersion(
                     pokemon_v2_pokemonspecy{
                         id
                         name
+                        is_baby
+                        is_legendary
+                        is_mythical
+                        gender_rate
+                        capture_rate
+                        base_happiness
+                        evolves_from_species_id
+                        pokemon_v2_evolutionchain {
+                            id
+                            pokemon_v2_pokemonspecies{
+                                id
+                                name
+                            }
+                        }
                         pokemon_v2_pokemons(
                             where:  {
                                 is_default:  {
@@ -116,7 +130,14 @@ query GetGameDataForVersion(
                                 where:  {
                                     is_hidden:  {
                                         _eq: false
-                                }
+                                    }
+                                    _and: {
+                                        pokemon_v2_generation: {
+                                            name: {
+                                                _eq: $generationName
+                                            }
+                                        }
+                                    }
                             }){
                                 id
                                 slot

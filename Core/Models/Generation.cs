@@ -9,8 +9,8 @@ public class Generation : NameIdResource
     
     public Generation(IGetInitialData_Generations generation)
     {
-        id = generation.Id;
-        name = generation.Name;
+        Id = generation.Id;
+        Name = generation.Name;
         foreach (var versiongroup in generation.Pokemon_v2_versiongroups )
         {
             version_groups.Add(new VersionGroup(versiongroup));
@@ -27,7 +27,7 @@ public class Generation : NameIdResource
     }
     public override string GetName()
     {
-        string temp = Regex.Replace(name.Replace('-', ' '), @"\b\w", m => m.Value.ToUpper());
+        string temp = Regex.Replace(Name.Replace('-', ' '), @"\b\w", m => m.Value.ToUpper());
         string result = Regex.Replace(temp, @"\b\w+\s*$", m => m.Value.ToUpper());
         return result;
     }

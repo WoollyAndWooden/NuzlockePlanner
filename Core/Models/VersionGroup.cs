@@ -13,8 +13,8 @@ public class VersionGroup : NameIdResource
 
     public VersionGroup(IGetInitialData_Generations_Pokemon_v2_versiongroups versiongroup)
     {
-        id = versiongroup.Id;
-        name = versiongroup.Name;
+        Id = versiongroup.Id;
+        Name = versiongroup.Name;
         order = versiongroup.Order;
         foreach (var version in versiongroup.Pokemon_v2_versions )
             versions.Add(new Game(version));

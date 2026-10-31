@@ -59,7 +59,7 @@ namespace Core.Components
             if (_gameSelectionState.SelectedVersionGroup is not null)
             {
                 var temp = _gameSelectionState.SelectedVersionGroup.pokedexes?.FirstOrDefault();
-                _pokedex = (temp is not null) ? _pokeApi.GetPokedex(temp.id, temp.name) : null;
+                _pokedex = (temp is not null) ? _pokeApi.GetPokedex(temp.Id, temp.Name) : null;
                 
             }
             else

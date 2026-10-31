@@ -12,8 +12,8 @@ public class Region : NameIdResource
     public Region(IGetGameDataForVersion_RegionData region, VersionGroup versionGroup)
     {
         versionGroupRegionId = region.Id;
-        id = region.Pokemon_v2_region.Id;
-        name = region.Pokemon_v2_region.Name;
+        Id = region.Pokemon_v2_region.Id;
+        Name = region.Pokemon_v2_region.Name;
         this.versionGroup = versionGroup;
     }
 }
