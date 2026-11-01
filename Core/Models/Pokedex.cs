@@ -5,7 +5,7 @@ namespace Core.Models;
 public class Pokedex : NameIdResource
 {
     public int aggregateCount {get;set;}
-    public List<PokemonEntry> pokemon_entries { get; set; }
+    public List<PokemonEntry> pokemon_entries { get; set; } = [];
     public Region region { get; set; }
     public List<VersionGroup> version_groups { get; set; } = [];
 
@@ -27,16 +27,11 @@ public class Pokedex : NameIdResource
     private Task _addEntry(
         IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers entry)
     {
-        try
-        {
-            pokemon_entries.Add(new PokemonEntry(entry));
-        }
-        catch (Exception ex)
-        {
-            
-        }
+        pokemon_entries.Add(new PokemonEntry(entry));
+        
         return Task.CompletedTask;
     }
+    
     public override void FullInitialization(NameIdResource data)
     {
         base.FullInitialization(data);

@@ -99,14 +99,15 @@ public partial class GameSelector
 
     private async Task _selectGame(int gameId)
     {
-        _gameSelectionState.SelectedGame = _pokeApi.GetGame(gameId);
-        _gameSelectionState.SelectedGame = _gameSelectionState.SelectedGame;
+        var selectedGame = _pokeApi.GetGame(gameId);
         LockGame = true;
         _lockTheLock = true;
-        await _pokeApi.GetGameDataForVersion(_selectedGeneration.Name, _gameSelectionState.SelectedVersionGroup.Name, _gameSelectionState.SelectedGame.Name);
+        await _pokeApi.GetGameDataForVersion(_selectedGeneration.Name, _gameSelectionState.SelectedVersionGroup.Name, selectedGame.Name);
+        _gameSelectionState.SelectedGame = selectedGame;
         _lockTheLock = false;
         if(_games.Count == 1)
             LockGame = false;
+        StateHasChanged();
     }
 
     private void _clearGame()

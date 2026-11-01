@@ -36,8 +36,8 @@ public class SpriteState
             {
                 "generation-i" => (name: versionGroup.Name, isShiny) switch
                 {
-                    ("red-green-japan", false) => ($"versions/{versionGroup.generation.Name}/{versionGroup.Name}/", $"versions/{versionGroup.generation.Name}/{versionGroup.Name}/", ".png"),
-                    ("red-green-japan", true) => ($"versions/{versionGroup.generation.Name}/{versionGroup.Name}/gray/", $"versions/{versionGroup.generation.Name}/", ".png"),
+                    ("red-green-japan" or "blue-japan", false) => ($"versions/{versionGroup.generation.Name}/red-green-japan/", $"versions/{versionGroup.generation.Name}/red-green-japan/", ".png"),
+                    ("red-green-japan" or "blue-japan", true) => ($"versions/{versionGroup.generation.Name}/red-green-japan/gray/", $"versions/{versionGroup.generation.Name}/", ".png"),
                     ("red-blue" or "yellow", false) => ($"versions/{versionGroup.generation.Name}/{versionGroup.Name}/transparent/", $"versions/{versionGroup.generation.Name}/{versionGroup.Name}/transparent/", ".png"),
                     ("red-blue" or "yellow", true) => ($"versions/{versionGroup.generation.Name}/{versionGroup.Name}/transparen/gray/", $"versions/{versionGroup.generation.Name}/{versionGroup.Name}/transparent/", ".png"),
                 },

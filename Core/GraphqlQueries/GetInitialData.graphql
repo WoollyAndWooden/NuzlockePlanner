@@ -6,6 +6,10 @@ query GetInitialData {
             id
             name
             order
+            pokemon_v2_generation {
+                id
+                name
+            }
             pokemon_v2_versions {
                 id
                 name

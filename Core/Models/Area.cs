@@ -4,7 +4,7 @@ namespace Core.Models;
 
 public class Area : NameIdResource
 {
-    public List<Encounter> encounters { get; set; }
+    public List<Encounter> encounters { get; set; } = [];
     public Location location { get; set; }
 
     public Area(IGetGameDataForVersion_EncountersData area)

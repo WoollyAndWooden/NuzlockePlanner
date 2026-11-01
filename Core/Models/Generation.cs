@@ -7,6 +7,8 @@ public class Generation : NameIdResource
 {
     public List<VersionGroup> version_groups { get; set; } = [];
     
+    public Generation(){}
+    
     public Generation(IGetInitialData_Generations generation)
     {
         Id = generation.Id;

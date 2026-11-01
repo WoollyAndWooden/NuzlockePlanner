@@ -42,8 +42,8 @@ public class Specie : NameIdResource
         foreach (var type in pokemonDetails.Pokemon_v2_pokemontypepasts)
             Types.Add(new PokemonType(type));
         // TODO: 
-        //foreach (var type in pokemonDetails.Pokemon_v2_pokemontypes.Where(x => !Types.Select(a => a.Slot).Contains(x.Slot)))
-        //    Types.Add(new PokemonType(type));
+        foreach (var type in pokemonDetails.Pokemon_v2_pokemontypes.Where(x => !Types.Select(a => a.Slot).Contains(x.Slot)))
+            Types.Add(new PokemonType(type));
     }
 
     public Specie(int? id, string name)
