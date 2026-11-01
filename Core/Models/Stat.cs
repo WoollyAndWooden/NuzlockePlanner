@@ -1,7 +1,14 @@
+using PokeApiClientNS;
+
 namespace Core.Models;
 
-public class Stat
+public class Stat : NameIdResource
 {
-    public uint StatId { get; set; }
-    public string Name { get; set; }
+    public Stat(IGetGameDataForVersion_RegionData_Pokemon_v2_region_Pokemon_v2_pokedexes_Pokemon_v2_pokemondexnumbers_Pokemon_v2_pokemonspecy_Pokemon_v2_pokemons_Pokemon_v2_pokemonstats stat)
+    {
+        Id = stat.Id;
+        Name = stat.Pokemon_v2_stat.Name;
+        BaseValue = stat.Base_stat;
+    }
+    public int BaseValue { get; set; }
 }

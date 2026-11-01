@@ -1,0 +1,21 @@
+{
+  "schema": "schema.graphql",
+  "documents": "GraphqlQueries/**/*.graphql",
+  "extensions": {
+    "strawberryShake": {
+      "name": "PokeApiClient",
+      "url": "https://beta.pokeapi.co/graphql/v1beta2",
+      "records": {
+        "inputs": false,
+        "entities": false
+      },
+      "transportProfiles": [
+        {
+          "name": "Default",
+          "transport": "Http",
+          "method": "Post"
+        }
+      ]
+    }
+  }
+}

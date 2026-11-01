@@ -4,16 +4,16 @@ namespace Core.Models;
 
 public abstract class NameIdResource
 {
-    public int? id { get; set; }
-    public string name { get; set; }
+    public int? Id { get; set; }
+    public string Name { get; set; }
 
     public virtual void FullInitialization(NameIdResource data)
     {
-        id = data.id;
+        Id = data.Id;
     }
     
     public virtual string GetName()
     {
-        return Regex.Replace(name.Replace('-', ' '), @"\b\w", m => m.Value.ToUpper());
+        return Regex.Replace(Name.Replace('-', ' '), @"\b\w", m => m.Value.ToUpper());
     }
 }
